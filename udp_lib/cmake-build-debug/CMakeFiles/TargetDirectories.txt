@@ -1,0 +1,3 @@
+/Users/overman/dev/github/_mycode/_cpp/upd/udplib/cmake-build-debug/CMakeFiles/udp_lib.dir
+/Users/overman/dev/github/_mycode/_cpp/upd/udplib/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/overman/dev/github/_mycode/_cpp/upd/udplib/cmake-build-debug/CMakeFiles/rebuild_cache.dir

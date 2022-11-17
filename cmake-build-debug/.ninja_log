@@ -1,0 +1,20 @@
+# ninja log v5
+1	974	1668664357128244100	udplib/CMakeFiles/udp_lib.dir/src/udp_server.cpp.o	e0b8579068a7624f
+0	742	1668665793095229844	udp_client/CMakeFiles/udp_client.dir/main_udp_client.cpp.o	4727fc732794f219
+1	209	1668668002365602141	build.ninja	d7176ab8ee2cf0d5
+508	567	1668663767360494295	server/udp_server	5351fa0f7e2405e9
+0	614	1668665792965862691	udp_lib/CMakeFiles/udp_lib.dir/src/udp_client.cpp.o	ea4672bf1d2bdfbb
+1008	1111	1668665844966767536	main/main	9bbd772f5789550a
+0	508	1668663767299362441	server/CMakeFiles/udp_server.dir/main_udp_server.cpp.o	ddfd07e7b8b220b6
+1	33416	1668663986598588383	test/CMakeFiles/ServerTest.dir/ServerTest.cpp.o	b27dfb815698cbce
+9	639	1668665529421820864	client/CMakeFiles/udp_client.dir/main_udp_client.cpp.o	f0f2f1339e667f36
+33418	33860	1668663987063723545	test/ServerTest	ed507e3abc579c91
+0	614	1668665792965905056	udp_lib/CMakeFiles/udp_lib.dir/src/udp_server.cpp.o	e08d94fcd0ef6482
+0	28971	1668664017653055557	test/CMakeFiles/ClientTest.dir/ClientTest.cpp.o	c1436e99151c95d4
+12	1007	1668665844860227142	main/CMakeFiles/main.dir/main.cpp.o	66624ec79d0ca9f2
+742	815	1668665793170393387	udp_client/udp_client	864ab1faea5e6b60
+7	590	1668665599998011101	udplib/CMakeFiles/udp_lib.dir/src/udp_client.cpp.o	3a092f4afad06f14
+614	653	1668665793010464000	udp_lib/libudp_lib.a	e1dfa813128101cf
+28972	29478	1668664018175716056	test/ClientTest	d0d081af0efc85f3
+591	629	1668665600041295000	udplib/libudp_lib.a	d253c74056122696
+2	278	1668668002365602141	build.ninja	d7176ab8ee2cf0d5

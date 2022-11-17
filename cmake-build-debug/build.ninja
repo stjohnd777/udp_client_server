@@ -1,0 +1,498 @@
+## This file contains all the build statements describing the
+# compilation DAG.
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# 
+# Which is the root file.
+# =============================================================================
+
+# =============================================================================
+# Project: lm_upd
+# Configurations: Debug
+# =============================================================================
+
+#############################################
+# Minimal version of Ninja required by this file
+
+ninja_required_version = 1.5
+
+
+#############################################
+# Set configuration variable for custom commands.
+
+CONFIGURATION = Debug
+# =============================================================================
+# Include auxiliary files.
+
+
+#############################################
+# Include rules file.
+
+include CMakeFiles/rules.ninja
+
+# =============================================================================
+
+#############################################
+# Logical path to working directory; prefix for absolute paths.
+
+cmake_ninja_workdir = /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" --regenerate-during-build -S/Users/overman/dev/github/_mycode/_cpp/upd -B/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /Users/overman/dev/github/_mycode/_cpp/upd/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for STATIC_LIBRARY target udp_lib
+
+
+#############################################
+# Order-only phony target for udp_lib
+
+build cmake_object_order_depends_target_udp_lib: phony || udp_lib/CMakeFiles/udp_lib.dir
+
+build udp_lib/CMakeFiles/udp_lib.dir/src/udp_client.cpp.o: CXX_COMPILER__udp_lib_Debug /Users/overman/dev/github/_mycode/_cpp/upd/udp_lib/src/udp_client.cpp || cmake_object_order_depends_target_udp_lib
+  DEP_FILE = udp_lib/CMakeFiles/udp_lib.dir/src/udp_client.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++17
+  INCLUDES = -I/Users/overman/dev/github/_mycode/_cpp/upd/udp_lib/include -I/usr/local/include
+  OBJECT_DIR = udp_lib/CMakeFiles/udp_lib.dir
+  OBJECT_FILE_DIR = udp_lib/CMakeFiles/udp_lib.dir/src
+
+build udp_lib/CMakeFiles/udp_lib.dir/src/udp_server.cpp.o: CXX_COMPILER__udp_lib_Debug /Users/overman/dev/github/_mycode/_cpp/upd/udp_lib/src/udp_server.cpp || cmake_object_order_depends_target_udp_lib
+  DEP_FILE = udp_lib/CMakeFiles/udp_lib.dir/src/udp_server.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++17
+  INCLUDES = -I/Users/overman/dev/github/_mycode/_cpp/upd/udp_lib/include -I/usr/local/include
+  OBJECT_DIR = udp_lib/CMakeFiles/udp_lib.dir
+  OBJECT_FILE_DIR = udp_lib/CMakeFiles/udp_lib.dir/src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target udp_lib
+
+
+#############################################
+# Link the static library udp_lib/libudp_lib.a
+
+build udp_lib/libudp_lib.a: CXX_STATIC_LIBRARY_LINKER__udp_lib_Debug udp_lib/CMakeFiles/udp_lib.dir/src/udp_client.cpp.o udp_lib/CMakeFiles/udp_lib.dir/src/udp_server.cpp.o
+  ARCH_FLAGS = -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  LANGUAGE_COMPILE_FLAGS = -g
+  OBJECT_DIR = udp_lib/CMakeFiles/udp_lib.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = udp_lib/libudp_lib.a
+  TARGET_PDB = udp_lib.a.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build udp_lib/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_lib && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build udp_lib/edit_cache: phony udp_lib/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build udp_lib/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_lib && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" --regenerate-during-build -S/Users/overman/dev/github/_mycode/_cpp/upd -B/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build udp_lib/rebuild_cache: phony udp_lib/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /Users/overman/dev/github/_mycode/_cpp/upd/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target upd_server
+
+
+#############################################
+# Order-only phony target for upd_server
+
+build cmake_object_order_depends_target_upd_server: phony || cmake_object_order_depends_target_udp_lib
+
+build udp_server/CMakeFiles/upd_server.dir/main_udp_server.cpp.o: CXX_COMPILER__upd_server_Debug /Users/overman/dev/github/_mycode/_cpp/upd/udp_server/main_udp_server.cpp || cmake_object_order_depends_target_upd_server
+  DEP_FILE = udp_server/CMakeFiles/upd_server.dir/main_udp_server.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++17
+  INCLUDES = -I/Users/overman/dev/github/_mycode/_cpp/upd/udp_server/udp_lib -I/Users/overman/dev/github/_mycode/_cpp/upd/udp_lib/include -I/usr/local/include
+  OBJECT_DIR = udp_server/CMakeFiles/upd_server.dir
+  OBJECT_FILE_DIR = udp_server/CMakeFiles/upd_server.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target upd_server
+
+
+#############################################
+# Link the executable udp_server/upd_server
+
+build udp_server/upd_server: CXX_EXECUTABLE_LINKER__upd_server_Debug udp_server/CMakeFiles/upd_server.dir/main_udp_server.cpp.o | udp_lib/libudp_lib.a || udp_lib/libudp_lib.a
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  LINK_LIBRARIES = udp_lib/libudp_lib.a
+  OBJECT_DIR = udp_server/CMakeFiles/upd_server.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = udp_server/upd_server
+  TARGET_PDB = upd_server.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build udp_server/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_server && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build udp_server/edit_cache: phony udp_server/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build udp_server/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_server && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" --regenerate-during-build -S/Users/overman/dev/github/_mycode/_cpp/upd -B/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build udp_server/rebuild_cache: phony udp_server/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /Users/overman/dev/github/_mycode/_cpp/upd/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target udp_client
+
+
+#############################################
+# Order-only phony target for udp_client
+
+build cmake_object_order_depends_target_udp_client: phony || cmake_object_order_depends_target_udp_lib
+
+build udp_client/CMakeFiles/udp_client.dir/main_udp_client.cpp.o: CXX_COMPILER__udp_client_Debug /Users/overman/dev/github/_mycode/_cpp/upd/udp_client/main_udp_client.cpp || cmake_object_order_depends_target_udp_client
+  DEP_FILE = udp_client/CMakeFiles/udp_client.dir/main_udp_client.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++17
+  INCLUDES = -I/Users/overman/dev/github/_mycode/_cpp/upd/udp_client/udp_lib -I/Users/overman/dev/github/_mycode/_cpp/upd/udp_lib/include -I/usr/local/include
+  OBJECT_DIR = udp_client/CMakeFiles/udp_client.dir
+  OBJECT_FILE_DIR = udp_client/CMakeFiles/udp_client.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target udp_client
+
+
+#############################################
+# Link the executable udp_client/udp_client
+
+build udp_client/udp_client: CXX_EXECUTABLE_LINKER__udp_client_Debug udp_client/CMakeFiles/udp_client.dir/main_udp_client.cpp.o | udp_lib/libudp_lib.a || udp_lib/libudp_lib.a
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  LINK_LIBRARIES = udp_lib/libudp_lib.a
+  OBJECT_DIR = udp_client/CMakeFiles/udp_client.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = udp_client/udp_client
+  TARGET_PDB = udp_client.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build udp_client/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_client && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build udp_client/edit_cache: phony udp_client/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build udp_client/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_client && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" --regenerate-during-build -S/Users/overman/dev/github/_mycode/_cpp/upd -B/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build udp_client/rebuild_cache: phony udp_client/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /Users/overman/dev/github/_mycode/_cpp/upd/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target ServerTest
+
+
+#############################################
+# Order-only phony target for ServerTest
+
+build cmake_object_order_depends_target_ServerTest: phony || test/CMakeFiles/ServerTest.dir
+
+build test/CMakeFiles/ServerTest.dir/ServerTest.cpp.o: CXX_COMPILER__ServerTest_Debug /Users/overman/dev/github/_mycode/_cpp/upd/test/ServerTest.cpp || cmake_object_order_depends_target_ServerTest
+  DEP_FILE = test/CMakeFiles/ServerTest.dir/ServerTest.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++17
+  OBJECT_DIR = test/CMakeFiles/ServerTest.dir
+  OBJECT_FILE_DIR = test/CMakeFiles/ServerTest.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target ServerTest
+
+
+#############################################
+# Link the executable test/ServerTest
+
+build test/ServerTest: CXX_EXECUTABLE_LINKER__ServerTest_Debug test/CMakeFiles/ServerTest.dir/ServerTest.cpp.o
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  OBJECT_DIR = test/CMakeFiles/ServerTest.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = test/ServerTest
+  TARGET_PDB = ServerTest.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target ClientTest
+
+
+#############################################
+# Order-only phony target for ClientTest
+
+build cmake_object_order_depends_target_ClientTest: phony || test/CMakeFiles/ClientTest.dir
+
+build test/CMakeFiles/ClientTest.dir/ClientTest.cpp.o: CXX_COMPILER__ClientTest_Debug /Users/overman/dev/github/_mycode/_cpp/upd/test/ClientTest.cpp || cmake_object_order_depends_target_ClientTest
+  DEP_FILE = test/CMakeFiles/ClientTest.dir/ClientTest.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++17
+  OBJECT_DIR = test/CMakeFiles/ClientTest.dir
+  OBJECT_FILE_DIR = test/CMakeFiles/ClientTest.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target ClientTest
+
+
+#############################################
+# Link the executable test/ClientTest
+
+build test/ClientTest: CXX_EXECUTABLE_LINKER__ClientTest_Debug test/CMakeFiles/ClientTest.dir/ClientTest.cpp.o
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  OBJECT_DIR = test/CMakeFiles/ClientTest.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = test/ClientTest
+  TARGET_PDB = ClientTest.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build test/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/test && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build test/edit_cache: phony test/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build test/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/test && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" --regenerate-during-build -S/Users/overman/dev/github/_mycode/_cpp/upd -B/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build test/rebuild_cache: phony test/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# /Users/overman/dev/github/_mycode/_cpp/upd/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target main
+
+
+#############################################
+# Order-only phony target for main
+
+build cmake_object_order_depends_target_main: phony || cmake_object_order_depends_target_udp_lib
+
+build main/CMakeFiles/main.dir/main.cpp.o: CXX_COMPILER__main_Debug /Users/overman/dev/github/_mycode/_cpp/upd/main/main.cpp || cmake_object_order_depends_target_main
+  DEP_FILE = main/CMakeFiles/main.dir/main.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++17
+  INCLUDES = -I/Users/overman/dev/github/_mycode/_cpp/upd/main/udp_lib -I/Users/overman/dev/github/_mycode/_cpp/upd/udp_lib/include -I/usr/local/include
+  OBJECT_DIR = main/CMakeFiles/main.dir
+  OBJECT_FILE_DIR = main/CMakeFiles/main.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target main
+
+
+#############################################
+# Link the executable main/main
+
+build main/main: CXX_EXECUTABLE_LINKER__main_Debug main/CMakeFiles/main.dir/main.cpp.o | udp_lib/libudp_lib.a || udp_lib/libudp_lib.a
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  LINK_LIBRARIES = udp_lib/libudp_lib.a
+  OBJECT_DIR = main/CMakeFiles/main.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = main/main
+  TARGET_PDB = main.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build main/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build main/edit_cache: phony main/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build main/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main && "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" --regenerate-during-build -S/Users/overman/dev/github/_mycode/_cpp/upd -B/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build main/rebuild_cache: phony main/CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Target aliases.
+
+build ClientTest: phony test/ClientTest
+
+build ServerTest: phony test/ServerTest
+
+build libudp_lib.a: phony udp_lib/libudp_lib.a
+
+build main: phony main/main
+
+build udp_client: phony udp_client/udp_client
+
+build udp_lib: phony udp_lib/libudp_lib.a
+
+build upd_server: phony udp_server/upd_server
+
+# =============================================================================
+# Folder targets.
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug
+
+build all: phony udp_lib/all udp_server/all udp_client/all test/all main/all
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main
+
+build main/all: phony main/main
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/test
+
+build test/all: phony test/ServerTest test/ClientTest
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_client
+
+build udp_client/all: phony udp_client/udp_client
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_lib
+
+build udp_lib/all: phony udp_lib/libudp_lib.a
+
+# =============================================================================
+
+#############################################
+# Folder: /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_server
+
+build udp_server/all: phony udp_server/upd_server
+
+# =============================================================================
+# Built-in targets
+
+
+#############################################
+# Re-run CMake if any of its inputs changed.
+
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt ../main/CMakeLists.txt ../test/CMakeLists.txt ../udp_client/CMakeLists.txt ../udp_lib/CMakeLists.txt ../udp_server/CMakeLists.txt /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCInformation.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeDependentOption.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-C.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/Clang.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageMessage.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Findboost.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-C.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-C.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /Users/overman/dev/github/vcpkg/scripts/buildsystems/vcpkg.cmake /usr/local/lib/cmake/Boost-1.79.0/BoostConfig.cmake /usr/local/lib/cmake/Boost-1.79.0/BoostConfigVersion.cmake /usr/local/lib/cmake/boost_headers-1.79.0/boost_headers-config-version.cmake /usr/local/lib/cmake/boost_headers-1.79.0/boost_headers-config.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake
+  pool = console
+
+
+#############################################
+# A missing CMake input file is not an error.
+
+build ../CMakeLists.txt ../main/CMakeLists.txt ../test/CMakeLists.txt ../udp_client/CMakeLists.txt ../udp_lib/CMakeLists.txt ../udp_server/CMakeLists.txt /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCInformation.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCXXInformation.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeCommonLanguageInclude.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeDependentOption.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeGenericSystem.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeInitializeConfigs.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeLanguageInformation.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInformation.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/CMakeSystemSpecificInitialize.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-C.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/AppleClang-CXX.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/Clang.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Compiler/GNU.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageMessage.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Findboost.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-C.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-AppleClang-CXX.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-C.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang-CXX.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Apple-Clang.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin-Initialize.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/Darwin.cmake /Users/overman/Library/Application$ Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Platform/UnixPaths.cmake /Users/overman/dev/github/vcpkg/scripts/buildsystems/vcpkg.cmake /usr/local/lib/cmake/Boost-1.79.0/BoostConfig.cmake /usr/local/lib/cmake/Boost-1.79.0/BoostConfigVersion.cmake /usr/local/lib/cmake/boost_headers-1.79.0/boost_headers-config-version.cmake /usr/local/lib/cmake/boost_headers-1.79.0/boost_headers-config.cmake CMakeCache.txt CMakeFiles/3.23.2/CMakeCCompiler.cmake CMakeFiles/3.23.2/CMakeCXXCompiler.cmake CMakeFiles/3.23.2/CMakeSystem.cmake: phony
+
+
+#############################################
+# Clean all the built files.
+
+build clean: CLEAN
+
+
+#############################################
+# Print all primary targets available.
+
+build help: HELP
+
+
+#############################################
+# Make the all target the default.
+
+default all

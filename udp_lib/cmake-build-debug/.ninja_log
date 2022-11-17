@@ -1,0 +1,4 @@
+# ninja log v5
+1	635	1668665312633491510	CMakeFiles/udp_lib.dir/src/udp_client.cpp.o	67b5f3825994f5a5
+1	638	1668665312633339600	CMakeFiles/udp_lib.dir/src/udp_server.cpp.o	f0eb1c2466db8770
+638	799	1668665312803668000	libudp_lib.a	75d5502fab2ab460
