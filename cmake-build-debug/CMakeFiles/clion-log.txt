@@ -1,0 +1,8 @@
+"/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/ninja/mac/ninja" -DCMAKE_TOOLCHAIN_FILE=/Users/overman/dev/github/vcpkg/scripts/buildsystems/vcpkg.cmake -G Ninja -S /Users/overman/dev/github/_mycode/_cpp/upd -B /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug
+CMake Error at CMakeLists.txt:6 (add_subdirectory):
+  add_subdirectory given source "udp_lib" which is not an existing directory.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/CMakeFiles/CMakeError.log".

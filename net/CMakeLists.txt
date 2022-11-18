@@ -4,7 +4,11 @@ project(udp_lib)
 
 
 find_package(boost 1.74.0 REQUIRED)
-add_library(${PROJECT_NAME} src/udp_client.cpp src/udp_server.cpp include/lm_udp.h)
+add_library(${PROJECT_NAME}
+        src/tcp/TCPUtils.cpp
+        src/udp/udp_client.cpp
+        src/udp/udp_server.cpp
+        include/net.h)
 
 target_include_directories(
         ${PROJECT_NAME}

@@ -1,0 +1,249 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.23"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "udp_lib",
+					"jsonFile" : "directory-udp_lib-Debug-3f1931352466d51fcafb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.23"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "udp_lib",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "udp_server",
+					"jsonFile" : "directory-udp_server-Debug-9b3f1918bde2ca39bd4f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.23"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "udp_server",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "udp_client",
+					"jsonFile" : "directory-udp_client-Debug-674fcfb5366b6dd189aa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.23"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "udp_client",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "test",
+					"jsonFile" : "directory-test-Debug-451c0598f41488bb20b9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.23"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "test",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"build" : "main",
+					"jsonFile" : "directory-main-Debug-c59558c0a3fb20727b44.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.23"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 5,
+					"source" : "main",
+					"targetIndexes" : 
+					[
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "lm_upd"
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "udp_lib",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "upd_server",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "udp_client",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "upd",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "main",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 4,
+					"id" : "ClientTest::@36f028580bb02cc8272a",
+					"jsonFile" : "target-ClientTest-Debug-43158ac2976603bf08f3.json",
+					"name" : "ClientTest",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "ServerTest::@36f028580bb02cc8272a",
+					"jsonFile" : "target-ServerTest-Debug-defadd98e71291fbbca2.json",
+					"name" : "ServerTest",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "example::@15c4a824ab2728a3f5e7",
+					"jsonFile" : "target-example-Debug-0e4358e996e1ce130b8d.json",
+					"name" : "example",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "main::@15c4a824ab2728a3f5e7",
+					"jsonFile" : "target-main-Debug-cd302710a9b7ac59989c.json",
+					"name" : "main",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "udp_client::@e0fa942d0bf27ebdacc8",
+					"jsonFile" : "target-udp_client-Debug-b7ed27afb5ecc179bcd1.json",
+					"name" : "udp_client",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "udp_lib::@736d348d4e1130539231",
+					"jsonFile" : "target-udp_lib-Debug-67f81ef988ca8e84eee9.json",
+					"name" : "udp_lib",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "upd_server::@4e4de307d3792e2b4cd0",
+					"jsonFile" : "target-upd_server-Debug-642691deed2bb364cbe6.json",
+					"name" : "upd_server",
+					"projectIndex" : 2
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug",
+		"source" : "/Users/overman/dev/github/_mycode/_cpp/upd"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}
