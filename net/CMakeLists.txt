@@ -1,13 +1,11 @@
-cmake_minimum_required(VERSION 3.23)
-
 project(net)
 
 find_package(boost 1.74.0 REQUIRED)
 
 add_library(${PROJECT_NAME}
-        src/tcp/tcp_utils.cpp
+        include/udp/udp_utils.h
         src/udp/udp_utils.cpp
-        src/udp/udp_server.cpp
+        include/utils.h
         include/net.h)
 
 target_include_directories(

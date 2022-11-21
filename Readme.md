@@ -1,15 +1,38 @@
-### Why Boost.Asio?
-Writing networking code that is portable is easy to maintain has been an issue since long. 
-C++ took a step to resolve this issue by introducing boost.asio. It is a cross-platform C++ 
-library for network and low-level I/O programming that provides developers with a consistent 
-asynchronous model using a modern C++ approach. 
+### This Project purpose is to create a simple IPC within the GNC by using UPD as communication mode
 
-Here’s a list of what it offers:
+#### Requirements 
 
-- Cross platform networking code (code would work on Windows, Linux, etc.)
-- IPv4 and IPv6 support
-- Asynchronous event support
-- Timer support
-- iostream compatibility
-- And much more. You can get the complete overview of the library here.
+IPC, One process can send a UDP message to another process.
 
+- Client Sends Gray Scale Images at 2592 x 1444
+- Server Revcieves the above image and queues image
+- Images are queued in CicularBuffer depth N
+- Images are processed from above buffer and forwared on.
+- It is unclear if the is Request/Responce needed
+
+#### Dependencies
+
+- boost::asio
+- boost
+
+```
+cmake .. \
+    -G"Visual Studio 16 2019" \
+    -DCMAKE_TOOLCHAIN_FILE=C:/Users/e438262/dev/github/vcpkg/scripts/buildsystems/vcpkg.cmake
+```
+
+
+### Synchronous UDP Client 
+
+- Acts as a client in the client-server communication model
+- Communicates with the server application using UDP
+- Uses I/O that block the thread
+    - execution until the corresponding operation completes
+    - or an error occurs
+
+### Functionaly
+
+- Given IP-address(s) and port(s) number 
+- Allocate a UDP socket.
+- Exchange messages with the servers.
+- Deallocate the socket.
