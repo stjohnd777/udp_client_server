@@ -266,6 +266,24 @@ main_IS_TOP_LEVEL:STATIC=OFF
 main_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/main
 
 //Value Computed by CMake
+mains_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main
+
+//Value Computed by CMake
+mains_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+mains_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/main
+
+//Value Computed by CMake
+net_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/net
+
+//Value Computed by CMake
+net_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+net_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/net
+
+//Value Computed by CMake
 udp_client_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_client
 
 //Value Computed by CMake
@@ -273,15 +291,6 @@ udp_client_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 udp_client_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/udp_client
-
-//Value Computed by CMake
-udp_lib_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_lib
-
-//Value Computed by CMake
-udp_lib_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-udp_lib_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/udp_lib
 
 //Value Computed by CMake
 upd_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/test
@@ -396,7 +405,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=5
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=6
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

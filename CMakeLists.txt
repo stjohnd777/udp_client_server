@@ -3,7 +3,7 @@ project(lm_upd)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_subdirectory(udp_lib)
+add_subdirectory(net)
 add_subdirectory(udp_server)
 add_subdirectory(udp_client)
 add_subdirectory(test)

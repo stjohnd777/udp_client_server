@@ -3,6 +3,31 @@
 //
 
 #pragma once
-#include "udp/udp_client.h"
-#include "udp/udp_server.h"
-#include "tcp/TCPUtils.h"
+
+
+/**
+ * Creates get<funName>/set<funName> for instance varable of
+ * type <varType> and name <varName> with initial value v
+ *
+ */
+#define ATTR(varType, varName, funName, v)\
+    protected: varType varName = v ;\
+    public: virtual varType get##funName(void) const {\
+        return varName;\
+    }\
+    public: virtual void set##funName(varType var){\
+        varName = var;\
+    }\
+
+#define ATT(varType, varName, funName)\
+    protected: varType varName ;\
+    public: virtual varType get##funName(void) const {\
+        return varName;\
+    }\
+    public: virtual void set##funName(varType var){\
+        varName = var;\
+    }
+
+
+#include "udp/udp_utils.h"
+#include "tcp/tcp_utils.h"

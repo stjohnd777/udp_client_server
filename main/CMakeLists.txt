@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.23)
 
-project(main)
+project(mains)
 
-add_executable(${PROJECT_NAME} UdpServerSync.cpp)
+add_executable(udp_send_rcv_example my_udp_send_rcv_example.cpp)
 
 target_include_directories(
         ${PROJECT_NAME}
@@ -16,7 +16,7 @@ target_link_libraries(
         udp_lib
 )
 
-add_executable(example SyncTCPClient.cpp)
+add_executable(asio_example_tcp_sync asio_example_tcp_sync.cpp)
 
 target_include_directories(
         example
@@ -32,16 +32,16 @@ target_link_libraries(
 
 
 
-add_executable(main_tcp main_tcp.cpp)
-
-target_include_directories(
-        main_tcp
-        PUBLIC
-        udp_lib
-)
-
-target_link_libraries(
-        main_tcp
-        PUBLIC
-        udp_lib
-)
+#add_executable(main_tcp main_tcp.cpp)
+#
+#target_include_directories(
+#        main_tcp
+#        PUBLIC
+#        udp_lib
+#)
+#
+#target_link_libraries(
+#        main_tcp
+#        PUBLIC
+#        udp_lib
+#)

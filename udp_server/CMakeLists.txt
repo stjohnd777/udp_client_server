@@ -4,7 +4,7 @@ project(upd_server)
 
 add_executable(
         ${PROJECT_NAME}
-        main_udp_server.cpp
+        udp_server.cpp
         )
 
 target_include_directories(

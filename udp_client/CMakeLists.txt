@@ -4,7 +4,7 @@ project(udp_client)
 
 add_executable(
         udp_client
-        main_udp_client.cpp
+        udp_client.cpp
         )
 
 target_include_directories(

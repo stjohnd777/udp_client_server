@@ -1,6 +1,23 @@
 "/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/ninja/mac/ninja" -DCMAKE_TOOLCHAIN_FILE=/Users/overman/dev/github/vcpkg/scripts/buildsystems/vcpkg.cmake -G Ninja -S /Users/overman/dev/github/_mycode/_cpp/upd -B /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug
-CMake Error at CMakeLists.txt:6 (add_subdirectory):
-  add_subdirectory given source "udp_lib" which is not an existing directory.
+CMake Warning (dev) at /Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake:438 (message):
+  The package name passed to `find_package_handle_standard_args` (Boost) does
+  not match the name of the calling package (boost).  This can lead to
+  problems in calling code that expects `find_package` result variables
+  (e.g., `_FOUND`) to follow a certain pattern.
+Call Stack (most recent call first):
+  /Users/overman/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/222.4167.35/CLion.app/Contents/bin/cmake/mac/share/cmake-3.23/Modules/Findboost.cmake:626 (find_package_handle_standard_args)
+  /Users/overman/dev/github/vcpkg/scripts/buildsystems/vcpkg.cmake:861 (_find_package)
+  net/CMakeLists.txt:5 (find_package)
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+CMake Error at main/CMakeLists.txt:7 (target_include_directories):
+  Cannot specify include directories for target "mains" which is not built by
+  this project.
+
+
+CMake Error at main/CMakeLists.txt:13 (target_link_libraries):
+  Cannot specify link libraries for target "mains" which is not built by this
+  project.
 
 
 -- Configuring incomplete, errors occurred!
