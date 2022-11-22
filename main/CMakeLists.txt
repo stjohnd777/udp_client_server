@@ -37,10 +37,29 @@ target_include_directories(
 target_link_libraries(receiver  PRIVATE net )
 
 
-add_executable(book_example book_example.cpp)
+add_executable(book_example book_example.cpp  )
 target_include_directories(
         book_example
         PUBLIC
         net
 )
 target_link_libraries(book_example  PRIVATE net )
+
+
+
+##############################################################
+add_executable(daytime_client daytime_client.cpp)
+target_include_directories(
+        daytime_client
+        PUBLIC
+        net
+)
+target_link_libraries(daytime_client  PRIVATE net )
+
+add_executable(daytime_server daytime_server.cpp)
+target_include_directories(
+        daytime_server
+        PUBLIC
+        net
+)
+target_link_libraries(daytime_server  PRIVATE net )

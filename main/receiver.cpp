@@ -18,7 +18,7 @@ int main() {
     unsigned short port = 7767;
     UdpUtilsSync udpUtil;
     while ( isRunning) {
-        string data = udpUtil.Receive(host, port);
+        string data = udpUtil.ClientReceive(host, port);
         cout << "Received : " << data << endl;
     }
 

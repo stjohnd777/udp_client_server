@@ -22,21 +22,20 @@ namespace lm {
             m_sock.open(asio::ip::udp::v4());
         }
 
-        void UdpUtilsSync::Send(string host, unsigned short port,const std::string &request) {
+        void UdpUtilsSync::ClientSendAndForget(string host, unsigned short port, const std::string &data) {
             auto udp_ep = utils::GetUdpEndpoint(host, port);
-            auto bufferedData = asio::buffer(request);
+            auto bufferedData = asio::buffer(data);
             m_sock.send_to(bufferedData,udp_ep);
         }
 
-        std::string UdpUtilsSync::Receive(string host, unsigned short port) {
-            // This method copies a datagram that came from the server designated by the sender_endpoint 
-            // object to the buffer specified by the buffers argument.
-            auto udp_ep = utils::GetUdpEndpoint(host, port);
+        std::string UdpUtilsSync::ClientReceive(string host, unsigned short port) {
+
+            asio::ip::udp::endpoint from_ep; // senders ep
             char response[1024];
             // if the size of the datagram that arrives larger than the size of the supplied buffer, the method will fail.
-            std::size_t bytes_received = m_sock.receive_from(asio::buffer(response), udp_ep);
+            std::size_t bytes_received = m_sock.receive_from(asio::buffer(response), from_ep);
             //  If the datagram never arrives the method will never unblock (hangs the  application)
-            m_sock.shutdown(asio::ip::udp::socket::shutdown_both);
+            //m_sock.shutdown(asio::ip::udp::socket::shutdown_both);
             return std::string(response, bytes_received);
         }
 

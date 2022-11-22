@@ -618,3 +618,5 @@ FodyWeavers.xsd
 cmake-build-debug/*
 
 vs_camke/
+
+cmake-build-debug
