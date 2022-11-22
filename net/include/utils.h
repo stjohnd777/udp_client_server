@@ -31,11 +31,50 @@
 #include <string>
 #include <sstream>
 #include <exception>
+#include <memory>
+#include <tuple>
 
 using namespace boost;
 
 namespace lm {
     namespace  spp {
+
+
+        template <class SomeStruct>
+        std::tuple<size_t,  char*  > _serialize(SomeStruct& s) {
+            size_t size = sizeof(SomeStruct);
+            char* p = (char*) &s;
+            std::tuple<size_t,char*> t =  std::make_tuple(size,p);
+            return t;
+        }
+      
+        template <class SomeStruct>
+        std::tuple<size_t, std::shared_ptr <char*> > serialize(SomeStruct& s) {
+            size_t size = sizeof(SomeStruct);
+            std::shared_ptr<char*> sp = std::make_shared <char*> (&s);
+            return std::make_tuple(size, sp);
+        }
+
+
+        template <class SomeStruct>
+        SomeStruct* _deserialize(std::tuple<size_t, char*> t) {
+            auto len = std::get<0>(t);
+            auto src = std::get<1>(t);
+            auto dest = new char[len];
+            memcpy(dest, src, len);
+            SomeStruct* s = (SomeStruct*)(dest);
+            return s;
+        }
+
+        template <class SomeStruct>
+        SomeStruct* deserialize(std::tuple<size_t, std::shared_ptr <char*> >& t) {
+            auto len = std::get<0>(t);
+            auto src = std::get<1>(t).get();
+            auto dest = new char[std::get<0>(t)];
+            memcpy(dest, src, len);
+            SomeStruct* s = (SomeStruct*)(dest);
+            return s;
+        }
 
 
         class EndPointException : public std::exception {
@@ -66,6 +105,8 @@ namespace lm {
                 auto ep = asio::ip::udp::endpoint(ip_address, port);
                 return ep;
             }
+
+
         };
     }
 }

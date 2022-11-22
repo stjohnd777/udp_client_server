@@ -15,7 +15,7 @@ using namespace lm::spp;
 int main() {
 
     bool isRunning = true;
-    std::string host = "localhost";
+    std::string host = "127.0.0.1";
     unsigned short port = 7767;
     UdpUtilsSync udpUtil;
 
