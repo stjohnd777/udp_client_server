@@ -1,0 +1,285 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "net",
+					"jsonFile" : "directory-net-Debug-80d4081e50edbbbe24f7.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "net",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "udp_server",
+					"jsonFile" : "directory-udp_server-Debug-9b3f1918bde2ca39bd4f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "udp_server",
+					"targetIndexes" : 
+					[
+						10
+					]
+				},
+				{
+					"build" : "udp_client",
+					"jsonFile" : "directory-udp_client-Debug-674fcfb5366b6dd189aa.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "udp_client",
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"build" : "test",
+					"jsonFile" : "directory-test-Debug-451c0598f41488bb20b9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "test",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"build" : "main",
+					"jsonFile" : "directory-main-Debug-c59558c0a3fb20727b44.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 5,
+					"source" : "main",
+					"targetIndexes" : 
+					[
+						3,
+						5,
+						6,
+						7,
+						9
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "lm_upd"
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "net",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "upd_server",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						10
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3
+					],
+					"name" : "udp_client",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						8
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						4
+					],
+					"name" : "test",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "mains",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3,
+						5,
+						6,
+						7,
+						9
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 4,
+					"id" : "ClientTest::@36f028580bb02cc8272a",
+					"jsonFile" : "target-ClientTest-Debug-24d15aa4cedf615c31ad.json",
+					"name" : "ClientTest",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "SerializerTest::@36f028580bb02cc8272a",
+					"jsonFile" : "target-SerializerTest-Debug-9fc211bc02fb3dc29685.json",
+					"name" : "SerializerTest",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "ServerTest::@36f028580bb02cc8272a",
+					"jsonFile" : "target-ServerTest-Debug-973a4e795bd6fde1a7c6.json",
+					"name" : "ServerTest",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "book_example::@15c4a824ab2728a3f5e7",
+					"jsonFile" : "target-book_example-Debug-f7692d0542e0242b22f9.json",
+					"name" : "book_example",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "net::@9c2d6179807f9007d92d",
+					"jsonFile" : "target-net-Debug-0c29772bb65d49b8c59f.json",
+					"name" : "net",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "receiver::@15c4a824ab2728a3f5e7",
+					"jsonFile" : "target-receiver-Debug-3be0d32ecb6f5dfc06d5.json",
+					"name" : "receiver",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "sams_example::@15c4a824ab2728a3f5e7",
+					"jsonFile" : "target-sams_example-Debug-3fde3c09abc3926930ad.json",
+					"name" : "sams_example",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "sender::@15c4a824ab2728a3f5e7",
+					"jsonFile" : "target-sender-Debug-f25ddb22aba7116a1cc0.json",
+					"name" : "sender",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "udp_client::@e0fa942d0bf27ebdacc8",
+					"jsonFile" : "target-udp_client-Debug-957fab9827d974cbc0de.json",
+					"name" : "udp_client",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "udp_send_rcv_example::@15c4a824ab2728a3f5e7",
+					"jsonFile" : "target-udp_send_rcv_example-Debug-533ab54e5f8b7d3ae42f.json",
+					"name" : "udp_send_rcv_example",
+					"projectIndex" : 5
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "upd_server::@4e4de307d3792e2b4cd0",
+					"jsonFile" : "target-upd_server-Debug-8c484aef69c79c8e97be.json",
+					"name" : "upd_server",
+					"projectIndex" : 2
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug",
+		"source" : "/Users/overman/dev/github/_mycode/_cpp/upd"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

@@ -257,15 +257,6 @@ lm_upd_IS_TOP_LEVEL:STATIC=ON
 lm_upd_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd
 
 //Value Computed by CMake
-main_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main
-
-//Value Computed by CMake
-main_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-main_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/main
-
-//Value Computed by CMake
 mains_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main
 
 //Value Computed by CMake
@@ -284,22 +275,13 @@ net_IS_TOP_LEVEL:STATIC=OFF
 net_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/net
 
 //Value Computed by CMake
-tes_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/test
+test_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/test
 
 //Value Computed by CMake
-tes_IS_TOP_LEVEL:STATIC=OFF
+test_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-tes_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/test
-
-//Value Computed by CMake
-tests_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/test
-
-//Value Computed by CMake
-tests_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-tests_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/test
+test_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/test
 
 //Value Computed by CMake
 udp_client_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_client
@@ -309,15 +291,6 @@ udp_client_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
 udp_client_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/udp_client
-
-//Value Computed by CMake
-upd_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/test
-
-//Value Computed by CMake
-upd_IS_TOP_LEVEL:STATIC=OFF
-
-//Value Computed by CMake
-upd_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/test
 
 //Value Computed by CMake
 upd_server_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_server

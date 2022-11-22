@@ -8,10 +8,10 @@ add_executable(
 target_include_directories(
         ${PROJECT_NAME}
         PUBLIC
-        udp_lib
+        net
         )
 
 target_link_libraries(${PROJECT_NAME}
         PUBLIC
-        udp_lib
+        net
         )

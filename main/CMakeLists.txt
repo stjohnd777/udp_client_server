@@ -1,45 +1,46 @@
 project(mains)
 
+
 add_executable(udp_send_rcv_example my_udp_send_rcv_example.cpp)
-
 target_include_directories(
-        ${PROJECT_NAME}
+        udp_send_rcv_example
         PUBLIC
-        udp_lib
+        net
 )
+target_link_libraries(udp_send_rcv_example  PRIVATE net )
+ 
 
-target_link_libraries(
-        ${PROJECT_NAME}
-        PUBLIC
-        udp_lib
-)
-
-add_executable(asio_example_tcp_sync asio_example_tcp_sync.cpp)
-
+add_executable(sams_example sams_example.cpp)
 target_include_directories(
-        example
+        sams_example
         PUBLIC
-        udp_lib
+        net
 )
+target_link_libraries(sams_example  PRIVATE net )
 
-target_link_libraries(
-        example
+
+add_executable(sender sender.cpp)
+target_include_directories(
+        sender
         PUBLIC
-        udp_lib
+        net
 )
+target_link_libraries(sender  PRIVATE net )
 
 
+add_executable(receiver receiver.cpp)
+target_include_directories(
+        receiver
+        PUBLIC
+        net
+)
+target_link_libraries(receiver  PRIVATE net )
 
-#add_executable(main_tcp main_tcp.cpp)
-#
-#target_include_directories(
-#        main_tcp
-#        PUBLIC
-#        udp_lib
-#)
-#
-#target_link_libraries(
-#        main_tcp
-#        PUBLIC
-#        udp_lib
-#)
+
+add_executable(book_example book_example.cpp)
+target_include_directories(
+        book_example
+        PUBLIC
+        net
+)
+target_link_libraries(book_example  PRIVATE net )

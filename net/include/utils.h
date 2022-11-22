@@ -29,8 +29,11 @@
 
 #include <boost/asio.hpp>
 #include <string>
+#include <iostream>
 #include <sstream>
 #include <exception>
+#include <memory>
+#include <tuple>
 
 using namespace boost;
 
@@ -38,34 +41,74 @@ namespace lm {
     namespace  spp {
 
 
-        class EndPointException : public exception {
+        template <class SomeStruct>
+        std::tuple<size_t,  char*  > _serialize(SomeStruct& s) {
+            size_t size = sizeof(SomeStruct);
+            char* p = (char*) &s;
+            std::tuple<size_t,char*> t =  std::make_tuple(size,p);
+            return t;
+        }
+      
+        template <class SomeStruct>
+        std::tuple<size_t, std::shared_ptr <char*> > serialize(SomeStruct& s) {
+            size_t size = sizeof(SomeStruct);
+            std::shared_ptr<char*> sp = std::make_shared <char*> (&s);
+            return std::make_tuple(size, sp);
+        }
+
+
+        template <class SomeStruct>
+        SomeStruct* _deserialize(std::tuple<size_t, char*> t) {
+            auto len = std::get<0>(t);
+            auto src = std::get<1>(t);
+            auto dest = new char[len];
+            memcpy(dest, src, len);
+            SomeStruct* s = (SomeStruct*)(dest);
+            return s;
+        }
+
+        template <class SomeStruct>
+        SomeStruct* deserialize(std::tuple<size_t, std::shared_ptr <char*> >& t) {
+            auto len = std::get<0>(t);
+            auto src = std::get<1>(t).get();
+            auto dest = new char[std::get<0>(t)];
+            memcpy(dest, src, len);
+            SomeStruct* s = (SomeStruct*)(dest);
+            return s;
+        }
+
+
+        class EndPointException : public std::exception {
         public:
             EndPointException(boost::system::error_code ec) : m_ec(ec) {}
 
             virtual const char *what() const throw() {
                 std::stringstream ss;
-                ss << "code:" << ec.value() << "message:" << ec.message() << std::endl;
+                ss << "code:" << m_ec.value() << "message:" << m_ec.message() << std::endl;
                 return ss.str().c_str();
             }
 
         private:
-            boost::system::error_code m_ec
+            boost::system::error_code m_ec;
         };
 
 
         class utils {
-
-            static endpoint GetEndpoint(std::string host, unsigned short port) {
+        public:
+            static asio::ip::udp::endpoint GetUdpEndpoint(std::string host, unsigned short port) {
                 boost::system::error_code ec;
                 // checks whether argument contains a valid IPv4 or IPv6 address then
                 // instantiates a corresponding v4 || v6
-                asio::ip::address ip_address = asio::ip::address::from_string(host, ec);
+               auto ip_address = asio::ip::address::from_string(host, ec);
                 if (ec.value() != 0) {
+                    std::cout << ec.value() << std::endl;
                     throw new EndPointException(ec);
                 }
-                auto ep = endpoint(ip_address, port);
+                auto ep = asio::ip::udp::endpoint(ip_address, port);
                 return ep;
             }
+
+
         };
     }
 }
