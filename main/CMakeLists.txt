@@ -1,5 +1,3 @@
-cmake_minimum_required(VERSION 3.23)
-
 project(mains)
 
 add_executable(udp_send_rcv_example my_udp_send_rcv_example.cpp)

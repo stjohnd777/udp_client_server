@@ -284,6 +284,24 @@ net_IS_TOP_LEVEL:STATIC=OFF
 net_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/net
 
 //Value Computed by CMake
+tes_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/test
+
+//Value Computed by CMake
+tes_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+tes_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/test
+
+//Value Computed by CMake
+tests_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/test
+
+//Value Computed by CMake
+tests_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+tests_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/test
+
+//Value Computed by CMake
 udp_client_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/udp_client
 
 //Value Computed by CMake
