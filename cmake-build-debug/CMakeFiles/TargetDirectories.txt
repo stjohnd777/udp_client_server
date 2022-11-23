@@ -19,5 +19,7 @@
 /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main/CMakeFiles/sender.dir
 /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main/CMakeFiles/receiver.dir
 /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main/CMakeFiles/book_example.dir
+/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main/CMakeFiles/daytime_client.dir
+/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main/CMakeFiles/daytime_server.dir
 /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main/CMakeFiles/edit_cache.dir
 /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main/CMakeFiles/rebuild_cache.dir

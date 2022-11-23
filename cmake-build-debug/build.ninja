@@ -540,6 +540,72 @@ build main/book_example: CXX_EXECUTABLE_LINKER__book_example_Debug main/CMakeFil
   TARGET_FILE = main/book_example
   TARGET_PDB = book_example.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target daytime_client
+
+
+#############################################
+# Order-only phony target for daytime_client
+
+build cmake_object_order_depends_target_daytime_client: phony || cmake_object_order_depends_target_net
+
+build main/CMakeFiles/daytime_client.dir/daytime_client.cpp.o: CXX_COMPILER__daytime_client_Debug /Users/overman/dev/github/_mycode/_cpp/upd/main/daytime_client.cpp || cmake_object_order_depends_target_daytime_client
+  DEP_FILE = main/CMakeFiles/daytime_client.dir/daytime_client.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++17
+  INCLUDES = -I/Users/overman/dev/github/_mycode/_cpp/upd/main/net -I/Users/overman/dev/github/_mycode/_cpp/upd/net/include -I/usr/local/include
+  OBJECT_DIR = main/CMakeFiles/daytime_client.dir
+  OBJECT_FILE_DIR = main/CMakeFiles/daytime_client.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target daytime_client
+
+
+#############################################
+# Link the executable main/daytime_client
+
+build main/daytime_client: CXX_EXECUTABLE_LINKER__daytime_client_Debug main/CMakeFiles/daytime_client.dir/daytime_client.cpp.o | net/libnet.a || net/libnet.a
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  LINK_LIBRARIES = net/libnet.a
+  OBJECT_DIR = main/CMakeFiles/daytime_client.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = main/daytime_client
+  TARGET_PDB = daytime_client.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target daytime_server
+
+
+#############################################
+# Order-only phony target for daytime_server
+
+build cmake_object_order_depends_target_daytime_server: phony || cmake_object_order_depends_target_net
+
+build main/CMakeFiles/daytime_server.dir/daytime_server.cpp.o: CXX_COMPILER__daytime_server_Debug /Users/overman/dev/github/_mycode/_cpp/upd/main/daytime_server.cpp || cmake_object_order_depends_target_daytime_server
+  DEP_FILE = main/CMakeFiles/daytime_server.dir/daytime_server.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk -std=gnu++17
+  INCLUDES = -I/Users/overman/dev/github/_mycode/_cpp/upd/main/net -I/Users/overman/dev/github/_mycode/_cpp/upd/net/include -I/usr/local/include
+  OBJECT_DIR = main/CMakeFiles/daytime_server.dir
+  OBJECT_FILE_DIR = main/CMakeFiles/daytime_server.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target daytime_server
+
+
+#############################################
+# Link the executable main/daytime_server
+
+build main/daytime_server: CXX_EXECUTABLE_LINKER__daytime_server_Debug main/CMakeFiles/daytime_server.dir/daytime_server.cpp.o | net/libnet.a || net/libnet.a
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk
+  LINK_LIBRARIES = net/libnet.a
+  OBJECT_DIR = main/CMakeFiles/daytime_server.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = main/daytime_server
+  TARGET_PDB = daytime_server.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -574,6 +640,10 @@ build ServerTest: phony test/ServerTest
 
 build book_example: phony main/book_example
 
+build daytime_client: phony main/daytime_client
+
+build daytime_server: phony main/daytime_server
+
 build libnet.a: phony net/libnet.a
 
 build net: phony net/libnet.a
@@ -605,7 +675,7 @@ build all: phony net/all udp_server/all udp_client/all test/all main/all
 #############################################
 # Folder: /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug/main
 
-build main/all: phony main/udp_send_rcv_example main/sams_example main/sender main/receiver main/book_example
+build main/all: phony main/udp_send_rcv_example main/sams_example main/sender main/receiver main/book_example main/daytime_client main/daytime_server
 
 # =============================================================================
 
