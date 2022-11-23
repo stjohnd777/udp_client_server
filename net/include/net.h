@@ -31,3 +31,10 @@
 #include "utils.h"
 #include "udp/udp_utils.h"
  
+
+typedef struct example {
+    uint8_t _u8;
+    uint16_t _u16;
+    uint32_t _u32;
+    char matrix[100][200];
+} Test;

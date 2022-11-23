@@ -24,7 +24,7 @@ int main() {
         for (int i = 0; i < 10; i++) {
             stringstream ss;
             ss << "Sending Some Data " << i << endl;
-            udpUtil->ClientSendAndForget(host, port, ss.str());
+            udpUtil->RequestAndForget(host, port, ss.str());
             cout << "Sent " << ss.str() << endl;
             std::this_thread::sleep_for(1000ms);
         }

@@ -13,82 +13,80 @@
 using namespace std;
 using namespace lm::spp;
 
-int main() {
+void HaltMainForSec(unsigned short seconds)
+{
+    std::cout << "Main thread pause for 30s" << std::endl;
+    std::this_thread::sleep_for(seconds * 1000ms);
+    std::this_thread::sleep_for(1000ms);
+}
+int main()
+{
 
     bool isRunning = true;
     std::string host = "127.0.0.1";
     unsigned short port = 7767;
 
     try {
-
-        // client sending thread
-        auto client = [&]() {
+        // client
+        auto client = [isRunning](string host, unsigned short port)
+        {
             int send_count = 0;
-            auto t = new std::thread([&]() {
+            auto t = new thread([&](string host, unsigned short port) {
                 UdpUtilsSync udpUtil;
                 while (isRunning) {
                     stringstream ss;
                     ss << "Sending Some Data " << send_count << endl;
                     string data = ss.str();
                     try {
-                        udpUtil.ClientSendAndForget(host, port, data);
+                        udpUtil.RequestAndForget(host, port, data);
+                        cout << "client.RequestAndForget " << data << endl;
                         send_count++;
-                        cout << send_count << ": ClientSendAndForget:" << data << endl;
-                        std::this_thread::sleep_for(1000ms);
+                        //std::this_thread::sleep_for(2000ms);
+                        //auto reply = udpUtil.RequestReply(host, port, data);
+                        //cout << "client.RequestReply " << data << ":" << reply << endl;
                     }
-                    catch (std::exception &ex) {
+                    catch (std::exception& ex) {
                         std::cerr << ex.what() << endl;
                         throw ex;
                     }
                 }
-                std::cout << "Sending Thread exiting" << std::endl;
-            });
+                std::cout << "Sending Thread exiting" << std::endl; 
+                },host,port );
             return t;
         };
-        client()->detach();
+        client(host,port)->detach();
 
-
-        // receiving thread, we are acting like a server
-        boost::circular_buffer<std::string> circular_buffer(3);
-
-        auto server = [&]() {
-            auto t = new std::thread([&]() {
+        // server
+        auto server = [isRunning](string host, unsigned short port) {
+            auto t = new thread([&](string host, unsigned short port) {
+                boost::circular_buffer<std::string> circular_buffer(3);
                 UdpUtilsSync udpUtil;
-                int recv_count = 0;
                 while (isRunning) {
                     try {
-                        auto data = udpUtil.ServerReceiveAndForget(host, port);
-                        cout << recv_count << ": ServerReceiveAndForget:" << data << endl;
-                        recv_count++;
+                        auto data = udpUtil.ReceiveNoReply(host, port);
+                        cout << "Server ReceiveNoReply " << data << endl;
                         circular_buffer.push_back(data);
                     }
                     catch (std::exception &ex) {
                         std::cerr << ex.what() << endl;
-                        throw ex;
+                        //throw ex;
                     }
                 }
                 std::cout << "Receiving Thread exiting" << std::endl;
-            });
+                
+                int index = 0;
+                std::for_each(begin(circular_buffer), end(circular_buffer), [&](std::string m) {
+                    std::cout << "index:" << index << "data:" << m << std::endl;
+                    index++;
+                    }); 
+                },host,port);
             return t;
         };
-        server()->detach();
+        server(host,port)->detach();
+      
 
-
-        std::cout << "Main thread pause for 30s" << std::endl;
-        std::this_thread::sleep_for(30 * 1000ms);
+        HaltMainForSec(30);
         isRunning = false;
-        std::this_thread::sleep_for(2000ms);
-
-        // take look at the circular buffer
-
-        int index = 0;
-        for_each(begin(circular_buffer), end(circular_buffer), [&](std::string m) {
-            std::cout << "index:" << index << "data:" << m << std::endl;
-            index++;
-        });
-
-
-        std::cout << "Main thread falling off the end of it brace" << std::endl;
 
     }
     catch (...) {
