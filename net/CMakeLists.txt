@@ -4,6 +4,8 @@ find_package(boost 1.74.0 REQUIRED)
 
 add_library(${PROJECT_NAME}
         include/udp/udp_utils.h
+        include/TimeMetric.h
+        src/TimeMetric.cpp
         src/udp/udp_utils.cpp
         include/utils.h
         include/net.h)
