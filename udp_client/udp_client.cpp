@@ -5,21 +5,33 @@
 #include <memory>
 #include <functional>
 
+#include <boost/array.hpp>
+
 template<class Req, class Res >
 class UdpClient {
 
     static 
     void Send(std::string host, unsigned short port, Req req  ) {
-        UdpUtilsSync udpUtil;
-        char* data = tup = lm::spp::Seriae(req);
-        udpUtil.RequestAndForgets(host, port, data );
+        const size_t N = sizeof(Req);
+        lm::spp::UdpUtilsSync<N> udpUtil;
+        char* _data  = lm::spp::Serialize(req);
+        boost::array<char, N> data;
+        udpUtil.RequestAndForget(host, port, data );
     }
 
     static 
-    std::shared_ptr<Res*> RequestReply(std::string host, unsigned short port) {
-        char* data = udpUtil.RequestReply(host, port, data);
-        Reply* res = lm::spp::DeSerialize<Reply>(data);
-        return std::make_shared <Reply*>(res);
+    std::shared_ptr<Res*> RequestReply(std::string host, unsigned short port, Req req) {
+        const size_t N = sizeof(Req);
+        lm::spp::UdpUtilsSync<N> udpUtil;
+        char* _data  = lm::spp::Serialize(req);
+        boost::array<char, N> data;
+        for ( size_t index = 0 ; index < N ; index++){
+            data[index] = _data[index];
+        }
+        boost::array<char, 1024> reply = udpUtil.RequestReply(host, port, data);
+
+        Res* res = lm::spp::DeSerialize<Res>(reply);
+        return std::make_shared <Res*>(res);
     }
 };
 
@@ -28,5 +40,6 @@ using namespace cv;
 using namespace std;
 int main() {
     Mat image = imread("/Users/overman/dev/github/_mycode/_cpp/upd/data/702HP_Satellite-Boeing.jpg",IMREAD_GRAYSCALE);
+    imshow("Boing",image);
     return 0;
 }
