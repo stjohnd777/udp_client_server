@@ -19,6 +19,14 @@ IPC, One process can send a UDP message to another process.
 cmake .. -G"Visual Studio 16 2019" -DCMAKE_TOOLCHAIN_FILE=C:/Users/e438262/dev/github/vcpkg/scripts/buildsystems/vcpkg.cmake
 ```
 
+### Regarding Size
+
+The image alone
+```
+2591 * 1444 = 3,742, 848 bytes = 3.742848 MB = 0.003742848G
+```
+
+
 
 ### Synchronous UDP Client 
 

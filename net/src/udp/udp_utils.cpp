@@ -22,19 +22,20 @@ namespace lm {
             m_udp_socket.open(asio::ip::udp::v4());
         }
 
-        void UdpUtilsSync::RequestAndForget(string host, unsigned short port, const std::string &data) {
-            auto udp_ep = utils::GetUdpEndpoint(host, port);
-            auto bufferedData = asio::buffer(data);
-            m_udp_socket.send_to(bufferedData,udp_ep);
-        }
-
         void UdpUtilsSync::SendTo(std::string host, unsigned short port, const std::string& data) {
             auto udp_ep = utils::GetUdpEndpoint(host, port);
             auto bufferedData = asio::buffer(data);
             m_udp_socket.send_to(bufferedData, udp_ep);
         }
 
-        string UdpUtilsSync::ListenAndReply() {
+        void UdpUtilsSync::RequestAndForget(string host, unsigned short port, const std::string &data) {
+            auto udp_ep = utils::GetUdpEndpoint(host, port);
+            auto bufferedData = asio::buffer(data);
+            m_udp_socket.send_to(bufferedData,udp_ep);
+        }
+
+
+        string UdpUtilsSync::Listen() {
             char response[1024];
             boost::asio::ip::udp::endpoint sender_endpoint;
             size_t bytes_received = m_udp_socket.receive_from(boost::asio::buffer(response), sender_endpoint);
@@ -44,7 +45,7 @@ namespace lm {
 
         string UdpUtilsSync::RequestReply(std::string host, unsigned short port, const std::string& data) {
             SendTo(host,port,data);
-            return ListenAndReply();
+            return Listen();
         }
 
         std::string UdpUtilsSync::ClientReceive(string host, unsigned short port) {
@@ -64,10 +65,11 @@ namespace lm {
  
             boost::asio::io_context io_context;
             boost::asio::ip::udp::socket socket(
-                io_context, 
+                m_ios,
                 boost::asio::ip::udp::endpoint(
-                boost::asio::ip::udp::v4(),
-                port));
+                    boost::asio::ip::udp::v4(),
+                    port)
+            );
 
             boost::array<char, 24> recv_buf;
             boost::asio::ip::udp::endpoint remote_endpoint;
@@ -78,17 +80,31 @@ namespace lm {
         }
 
         std::string UdpUtilsSync::ReceiveAndReply(std::string host, unsigned short port) {
-            boost::asio::ip::udp::socket socket(m_ios, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port));
+            
+            // listening for message
+            // req = onMessage()
+            // onMessage ( (req)=>{})
+            boost::asio::ip::udp::socket socket(
+                m_ios, 
+                boost::asio::ip::udp::endpoint(
+                    boost::asio::ip::udp::v4(), 
+                    port)
+            );
             boost::array<char, 24> recv_buf;
             boost::asio::ip::udp::endpoint remote_endpoint;
             std::size_t bytes_received = socket.receive_from(boost::asio::buffer(recv_buf), remote_endpoint);
-            std::string data(recv_buf.begin(), bytes_received);
+            std::string req(recv_buf.begin(), bytes_received);
 
+            // Compute Response
+            // res = handler(req)
+            
+            // ReplyTo(ep,reply)
             std::string reply = "200:OK";
             boost::system::error_code ignored_error;
             socket.send_to(boost::asio::buffer(reply), remote_endpoint, 0, ignored_error);
 
-            return data;
+            // No need for return mayeb retur tuple<Req,Res>
+            return req;
         }
 
 

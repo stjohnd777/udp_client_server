@@ -48,16 +48,39 @@ namespace lm {
         //    boost::asio::ip::udp::socket m_udp_socket;
         //};
 
+        //template <class Req, class Res>
+        //class UdpUtils {
+
+        //public:
+        //    UdpUtilsSync();
+
+        //    // Server Listen and Reply tp Sender
+        //    Res OnMessage();
+
+        //    // Client Fire and Forget, DRY same as SendTo
+        //    void Send(std::string host, unsigned short port, const Req& data);
+
+        //    // Client Sends Request and Wait for Reply
+        //    Res ReplyToSender();
+ 
+        //protected:
+        //    // This is the object providing access to the operating system's communication services
+        //    // used by the socket object
+        //    boost::asio::io_service m_ios;
+        //    // UDP socket used for communication
+        //    boost::asio::ip::udp::socket m_udp_socket;
+        //};
+
         class UdpUtilsSync {
 
         public:
             UdpUtilsSync();
 
             void SendTo(std::string host, unsigned short port, const std::string& data);
-
-            std::string ListenAndReply();
-
             void RequestAndForget(std::string host, unsigned short port, const std::string &data);
+
+            std::string Listen();
+
 
             std::string RequestReply(std::string host, unsigned short port, const std::string& data);
             
@@ -70,6 +93,8 @@ namespace lm {
             virtual ~UdpUtilsSync();
 
         protected:
+            size_t buffer_size_req = 1024;
+            size_t buffer_size_res = 1024;
             // This is the object providing access to the operating system's communication services
             // used by the socket object
             boost::asio::io_service m_ios;
