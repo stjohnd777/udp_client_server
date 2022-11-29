@@ -19,23 +19,123 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68d5a40d-a181-401b-841c-9df1df98bcd1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.vs/slnx.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitirnore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitirnore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/upd.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-c6083af2f39029b328b0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-c386e507fa78e678c129.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-212c9906dfa0e8ab845a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-11-29T05-37-30-0136.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-ClientTest-Debug-118defd173cfaf6c2702.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-SerializerTest-Debug-27f40115c1afcd3cc3ea.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-ServerTest-Debug-551b11bb2daead4813e7.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-book_example-Debug-2570cf194df735fbe55a.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-daytime_client-Debug-330c637a382cba7010fd.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-daytime_server-Debug-a557f81df5b202db0274.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-net-Debug-5094b1f764e8f700fb20.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-receiver-Debug-02daeb7f6ecad8e886b1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-request_reply-Debug-28b7417c429ecbd5a8f4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-sams_example-Debug-1811869041604b370f7e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-sender-Debug-4f0a0fd1bac4f8170643.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-server-Debug-404943d7a7380759df20.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-udp_client-Debug-03b5f4aae536dbb4a22e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-udp_send_rcv_example-Debug-50b255c19bdfd088d1d5.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-upd_server-Debug-8b6e1b53a9b19ba5478e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/main/CMakeFiles/receiver.dir/receiver.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/main/CMakeFiles/request_reply.dir/request_reply.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/main/CMakeFiles/sender.dir/sender.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/main/CMakeFiles/server.dir/server.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/main/CMakeFiles/udp_send_rcv_example.dir/my_udp_send_rcv_example.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/main/receiver" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/main/request_reply" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/main/sender" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/main/server" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/main/udp_send_rcv_example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/net/CMakeFiles/net.dir/src/Props.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/net/CMakeFiles/net.dir/src/RandomString.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/net/CMakeFiles/net.dir/src/TimeMetric.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/net/CMakeFiles/net.dir/src/http/Rest.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/net/CMakeFiles/net.dir/src/http/RestClient.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/net/CMakeFiles/net.dir/src/udp/udp_utils.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/net/libnet.a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/udp_client/CMakeFiles/udp_client.dir/udp_client.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/udp_client/udp_client" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/702HP_Satellite-Boeing.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/SPP.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/ip4header.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/udp_refresher.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/udpheader.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/BUILD_INFO" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/CONTROL" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/bin/libcurl.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/bin/libcurl.pdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/debug/bin/libcurl-d.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/debug/bin/libcurl-d.pdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/debug/lib/libcurl-d.lib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/debug/lib/pkgconfig/libcurl.pc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/curl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/curlver.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/easy.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/header.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/mprintf.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/multi.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/options.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/stdcheaders.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/system.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/typecheck-gcc.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/include/curl/urlapi.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/lib/libcurl.lib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/lib/pkgconfig/libcurl.pc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/share/curl/CURLConfig.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/share/curl/CURLConfigComponents.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/share/curl/CURLConfigVersion.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/share/curl/CURLTargets-debug.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/share/curl/CURLTargets-release.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/share/curl/CURLTargets.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/share/curl/copyright" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/share/curl/vcpkg-cmake-wrapper.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/share/curl/vcpkg.spdx.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/share/curl/vcpkg_abi_info.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/tools/curl/bin/curl-config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/external/curl_x64-windows/tools/curl/debug/bin/curl-config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/request_reply.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/server.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/include/Props.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/include/RandomString.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/include/TimeMetric.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/include/crow_all.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/include/http/RestClient.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/include/http/rest_server.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/src/Props.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/src/RandomString.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/src/TimeMetric.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/src/http/RestClient.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/net/src/http/rest_server.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/RestClientTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/main/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/my_udp_send_rcv_example.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/my_udp_send_rcv_example.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/receiver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/receiver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/sams_example.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/sams_example.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/sender.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/sender.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/net/include/net.h" beforeDir="false" afterPath="$PROJECT_DIR$/net/include/net.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/net/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/net/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/net/include/udp/udp_utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/net/include/udp/udp_utils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/net/include/utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/net/include/utils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/net/src/udp/udp_utils.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/net/src/udp/udp_utils.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/SerializerTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/SerializerTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/udp_client/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/udp_client/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/udp_client/udp_client.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/udp_client/udp_client.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/udp_server/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/udp_server/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/udp_server/udp_server.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/udp_server/udp_server.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

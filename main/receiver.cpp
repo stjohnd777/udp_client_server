@@ -18,9 +18,18 @@ int main() {
     unsigned short port = 7767;
     UdpUtilsSync udpUtil;
     while ( isRunning) {
-        string data = udpUtil.ClientReceive(host, port);
-        cout << "Received : " << data << endl;
-    }
+        auto tuple = udpUtil.ServerReceiveNoReply(host, port);
+        auto len = std::get<0>(tuple);
+        auto pChar = std::get<1>(tuple);
+        char s[len+1];
+        for ( size_t idx =0; idx < len; idx++){
+            char * p = pChar.get();
+            s[idx] = *( pChar.get() + idx);
+        }
+        s[len] = 0;
+        string str(s);
+        cout << " Server Received " << str << endl;
 
+    }
 
 }

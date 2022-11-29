@@ -55,6 +55,8 @@ private:
 
     void handleReceive(const boost::system::error_code& error, std::size_t bytes_transferred) {
 
+        std::array<char, 1024> _recvBuffer;
+
 		std::cout << "-> | " ;
 
         if (!error || error == boost::asio::error::message_size) {

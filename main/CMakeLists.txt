@@ -63,3 +63,23 @@ target_include_directories(
         net
 )
 target_link_libraries(daytime_server  PRIVATE net )
+
+
+
+add_executable(server server.cpp)
+target_include_directories(
+        server
+        PUBLIC
+        net
+)
+target_link_libraries(server  PRIVATE net )
+
+
+
+add_executable(request_reply request_reply.cpp)
+target_include_directories(
+        request_reply
+        PUBLIC
+        net
+)
+target_link_libraries(request_reply  PRIVATE net )

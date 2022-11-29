@@ -4,7 +4,6 @@
 #include <thread>
 #include <chrono>
 #include <algorithm>
-#include <boost/array.hpp>
 
 #include <net.h>
 
@@ -13,63 +12,74 @@
 using namespace std;
 using namespace lm::spp;
 
-void HaltMainForSec(unsigned short seconds)
-{
-    std::cout << "Main thread pause for 30s" << std::endl;
+void HaltMainForSec(unsigned short seconds) {
+    std::cout << "Main thread pause for " << seconds <<  std::endl;
     std::this_thread::sleep_for(seconds * 1000ms);
     std::this_thread::sleep_for(1000ms);
 }
-int main()
-{
+
+int main() {
 
     bool isRunning = true;
     std::string host = "127.0.0.1";
     unsigned short port = 7767;
 
     try {
-        // client
-        auto client = [isRunning](string host, unsigned short port)
-        {
-            int send_count = 0;
+
+        auto startSending = [isRunning](string host, unsigned short port) {
             auto t = new thread([&](string host, unsigned short port) {
                 UdpUtilsSync udpUtil;
+                int send_count = 0;
                 while (isRunning) {
                     stringstream ss;
-                    ss << "Sending Some Data " << send_count << endl;
+                    ss << "data:" << send_count ;
                     string data = ss.str();
                     try {
-                        udpUtil.RequestAndForget(host, port, data);
-                        cout << "client.RequestAndForget " << data << endl;
+                        size_t len =  data.length();
+                        const char* pdata = data.c_str();
+                        udpUtil.SendTo(host, port, pdata, len);
+                        cout << "sending thread:" << std::this_thread::get_id()  << "sent:" << data << " len:" << len << endl;
                         send_count++;
-                        //std::this_thread::sleep_for(2000ms);
-                        //auto reply = udpUtil.RequestReply(host, port, data);
-                        //cout << "client.RequestReply " << data << ":" << reply << endl;
+                        std::this_thread::sleep_for(1000ms);
                     }
                     catch (std::exception& ex) {
                         std::cerr << ex.what() << endl;
                         throw ex;
                     }
                 }
-                std::cout << "Sending Thread exiting" << std::endl; 
+                std::cout << "thread:" << std::this_thread::get_id()  << " Sender Exiting" << std::endl;
                 },host,port );
             return t;
         };
-        client(host,port)->detach();
+        startSending(host,port)->detach();
+        startSending(host,port)->detach();
+        startSending(host,port)->detach();
+
+
 
         // server
-        auto server = [isRunning](string host, unsigned short port) {
+        auto startReceiving = [isRunning](string host, unsigned short port) {
             auto t = new thread([&](string host, unsigned short port) {
+
                 boost::circular_buffer<std::string> circular_buffer(3);
                 UdpUtilsSync udpUtil;
                 while (isRunning) {
                     try {
-                        auto data = udpUtil.ReceiveNoReply(host, port);
-                        cout << "Server ReceiveNoReply " << data << endl;
-                        circular_buffer.push_back(data);
+                        auto t = udpUtil.ServerReceiveNoReply(host, port);
+                        auto len = std::get<0>(t);
+                        auto pChar = std::get<1>(t);
+                        char s[len+1];
+                        for ( size_t idx =0; idx < len; idx++){
+                            char * p = pChar.get();
+                            s[idx] = *( pChar.get() + idx);
+                        }
+                        s[len] = 0;
+                        string str(s);
+                        cout << "receiving thread:" << std::this_thread::get_id() <<  " Server Received " << str << endl;
+                        circular_buffer.push_back(s);
                     }
                     catch (std::exception &ex) {
                         std::cerr << ex.what() << endl;
-                        //throw ex;
                     }
                 }
                 std::cout << "Receiving Thread exiting" << std::endl;
@@ -82,10 +92,11 @@ int main()
                 },host,port);
             return t;
         };
-        server(host,port)->detach();
-      
+        startReceiving(host,port)->detach();
 
-        HaltMainForSec(30);
+
+        HaltMainForSec(60);
+
         isRunning = false;
 
     }

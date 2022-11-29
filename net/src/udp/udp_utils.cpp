@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <boost/asio.hpp>
 
 #include <utils.h>
@@ -13,84 +14,99 @@ namespace lm {
         using namespace boost;
         using namespace boost::asio;
 
-        UdpUtilsSync::UdpUtilsSync() : m_udp_socket(m_ios) {
-
-            // Because communication over UDP protocol, 
-            // which is a connectionless protocol, a single 
-            // object of this class can be used to communicate 
-            // with multiple servers.
+        UdpUtilsSync::UdpUtilsSync(): 
+            m_udp_socket(m_ios) {
             m_udp_socket.open(asio::ip::udp::v4());
         }
 
-        void UdpUtilsSync::RequestAndForget(string host, unsigned short port, const std::string &data) {
+        void UdpUtilsSync::SendTo(std::string host, unsigned short port, const char* pdata, size_t len) {
             auto udp_ep = utils::GetUdpEndpoint(host, port);
-            auto bufferedData = asio::buffer(data);
+
+            char  data[len];
+            for (size_t index = 0; index < len; index++) {
+                char c = *( pdata + index);
+                data[index] = c;
+            }
+
+            auto bufferedData = asio::buffer(data,len);
             m_udp_socket.send_to(bufferedData,udp_ep);
         }
 
-        void UdpUtilsSync::SendTo(std::string host, unsigned short port, const std::string& data) {
-            auto udp_ep = utils::GetUdpEndpoint(host, port);
-            auto bufferedData = asio::buffer(data);
-            m_udp_socket.send_to(bufferedData, udp_ep);
-        }
+        std::tuple<size_t,std::shared_ptr<char[]> >
+        UdpUtilsSync::BlockingRead() {
 
-        string UdpUtilsSync::ListenAndReply() {
-            char response[1024];
+            char recv_buf[1024];
+            memset(recv_buf,0,1024);
+
             boost::asio::ip::udp::endpoint sender_endpoint;
-            size_t bytes_received = m_udp_socket.receive_from(boost::asio::buffer(response), sender_endpoint);
-            std::string rcvData(response, bytes_received);
-            return rcvData;
+            size_t bytes_received = m_udp_socket.receive_from(boost::asio::buffer(recv_buf), sender_endpoint);
+
+
+            std::shared_ptr<char[]> sp(new char[bytes_received]);
+            for (size_t index = 0; index < bytes_received; index++) {
+                char c = recv_buf[index];
+                *(sp.get()+index) = c;
+            }
+
+            return std::make_tuple(bytes_received,sp);
         }
 
-        string UdpUtilsSync::RequestReply(std::string host, unsigned short port, const std::string& data) {
-            SendTo(host,port,data);
-            return ListenAndReply();
-        }
+        std::tuple<size_t,std::shared_ptr<char[]>>
+        UdpUtilsSync::ServerReceiveNoReply(std::string host, unsigned short port) {
 
-        std::string UdpUtilsSync::ClientReceive(string host, unsigned short port) {
-
-            asio::ip::udp::endpoint from_ep; // senders ep
-            char response[1024];
-            memset(response, 0, sizeof(response));
-            strcpy(response, "This is Some Bugus Reply");
-            // if the size of the datagram that arrives larger than the size of the supplied buffer, the method will fail.
-            std::size_t bytes_received = m_udp_socket.receive_from(asio::buffer(response), from_ep);
-            //  If the datagram never arrives the method will never unblock (hangs the  application)
-            //m_sock.shutdown(asio::ip::udp::socket::shutdown_both);
-            return std::string(response, bytes_received);
-        }
-
-        std::string UdpUtilsSync::ReceiveNoReply(std::string host, unsigned short port) {
- 
             boost::asio::io_context io_context;
-            boost::asio::ip::udp::socket socket(
-                io_context, 
-                boost::asio::ip::udp::endpoint(
-                boost::asio::ip::udp::v4(),
-                port));
+            boost::asio::ip::udp::socket socket(io_context, boost::asio::ip::udp::endpoint( boost::asio::ip::udp::v4(),port));
 
-            boost::array<char, 24> recv_buf;
+            char recv_buf[1024];
+            memset(recv_buf,0,1024);
+
             boost::asio::ip::udp::endpoint remote_endpoint;
             std::size_t bytes_received = socket.receive_from(boost::asio::buffer(recv_buf), remote_endpoint);
-            std::string data(recv_buf.begin(), bytes_received);
 
-            return data;
+            std::shared_ptr<char[]> sp(new char[bytes_received]);
+            for (size_t index = 0; index < bytes_received; index++) {
+                char c = recv_buf[index];
+                *(sp.get()+index) = c;
+            }
+            return std::make_tuple(bytes_received,sp);
         }
 
-        std::string UdpUtilsSync::ReceiveAndReply(std::string host, unsigned short port) {
-            boost::asio::ip::udp::socket socket(m_ios, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port));
-            boost::array<char, 24> recv_buf;
-            boost::asio::ip::udp::endpoint remote_endpoint;
-            std::size_t bytes_received = socket.receive_from(boost::asio::buffer(recv_buf), remote_endpoint);
-            std::string data(recv_buf.begin(), bytes_received);
+        std::tuple<size_t,std::shared_ptr<char[]>> UdpUtilsSync::RequestReply(std::string host, unsigned short port, const char* pdata, size_t len) {
+            SendTo(host,port,pdata,len);
+            return BlockingRead();
+        }
 
-            std::string reply = "200:OK";
+        void UdpUtilsSync::ReceiveReply(
+                std::string host,
+                unsigned short port,
+                REQ_REPLY_HANDLER f) {
+            using namespace boost::asio;
+            using namespace boost::asio::ip;
+
+            udp::socket socket(m_ios, boost::asio::ip::udp::endpoint( udp::v4(), port));
+            boost::array<char, 1024> recv_buf;
+            udp::endpoint remote_endpoint;
+
+            std::size_t bytes_received = socket.receive_from(buffer(recv_buf), remote_endpoint);
+            std::shared_ptr<char[]> sp(new char[bytes_received]);
+            for (size_t index = 0; index < bytes_received; index++) {
+                char c = recv_buf[index];
+                *(sp.get()+index) = c;
+            }
+            auto req = std::make_tuple(bytes_received,sp);
+
+            auto res = f(req);
+            auto len = std::get<0>(res);
+            auto pChar = std::get<1>(res);
+            char s[len+1];
+            for ( size_t idx =0; idx < len; idx++){
+                char * p = pChar.get();
+                s[idx] = *( pChar.get() + idx);
+            }
+
             boost::system::error_code ignored_error;
-            socket.send_to(boost::asio::buffer(reply), remote_endpoint, 0, ignored_error);
-
-            return data;
+            socket.send_to(buffer(s,len), remote_endpoint, 0, ignored_error);
         }
-
 
         UdpUtilsSync::~UdpUtilsSync() {
             m_udp_socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);

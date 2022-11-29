@@ -1,9 +1,23 @@
 project(net)
 
 find_package(boost 1.74.0 REQUIRED)
+find_package(CURL CONFIG REQUIRED)
+
 
 add_library(${PROJECT_NAME}
         include/udp/udp_utils.h
+        include/Props.h
+        src/Props.cpp
+        include/TimeMetric.h
+        src/TimeMetric.cpp
+        include/RandomString.h
+        src/RandomString.cpp
+
+        include/crow_all.h
+        include/http/RestClient.h
+        src/http/RestClient.cpp
+
+
         src/udp/udp_utils.cpp
         include/utils.h
         include/net.h)
@@ -21,4 +35,6 @@ target_link_libraries(
         ${PROJECT_NAME}
         ${Boost_LIBRARIES}
         PRIVATE
+        CURL::libcurl
         )
+        

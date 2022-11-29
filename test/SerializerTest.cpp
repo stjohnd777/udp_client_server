@@ -21,16 +21,12 @@ TEST_CASE("True Test ", "1") {
 
 
 TEST_CASE("__Serializer Test ", "_1") {
-
     Test test;
     test._u8 = 1;
     test._u16 = 2;
     test._u32 = 3;
-
     char*   t = lm::spp::Serialize(test);
-
     Test* test2 = lm::spp::DeSerialize<Test>(t);
-
     REQUIRE(test._u8 == test2->_u8);
     REQUIRE(test._u16 == test2->_u16);
     REQUIRE(test._u32 == test2->_u32);

@@ -9,7 +9,7 @@ template<class Req, class Reply >
 class UdpServer {
 public:
     std::shared_ptr<Req*> Receive(std::string host, unsigned short port, Req req) {
-        auto data = udpUtil.ReceiveNoReply(host, port);
+        auto data = udpUtil.ServerReceiveNoReply(host, port);
         Req* req = lm::spp::DeSerialize<Req>(data);
         return std::make_shared <Req*>(req);
     }
