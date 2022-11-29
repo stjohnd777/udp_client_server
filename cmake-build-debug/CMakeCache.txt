@@ -213,6 +213,9 @@ CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=/Users/overman/dev/github/vcpkg/scripts/build
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//The directory containing a CMake configuration file for CURL.
+CURL_DIR:PATH=/Users/overman/dev/github/vcpkg/installed/x64-osx/share/curl
+
 //The directory containing a CMake configuration file for Eigen3.
 Eigen3_DIR:PATH=/Users/overman/dev/github/vcpkg/installed/x64-osx/share/eigen3
 
@@ -341,6 +344,9 @@ net_BINARY_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-deb
 
 //Value Computed by CMake
 net_IS_TOP_LEVEL:STATIC=OFF
+
+//Dependencies for the target
+net_LIB_DEPENDS:STATIC=general;CURL::libcurl;
 
 //Value Computed by CMake
 net_SOURCE_DIR:STATIC=/Users/overman/dev/github/_mycode/_cpp/upd/net

@@ -10,6 +10,8 @@ Call Stack (most recent call first):
   net/CMakeLists.txt:3 (find_package)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
+-- Found ZLIB: /Users/overman/dev/github/vcpkg/installed/x64-osx/debug/lib/libz.a (found suitable version "1.2.11", minimum required is "1") 
+-- Found ZLIB: /Users/overman/dev/github/vcpkg/installed/x64-osx/debug/lib/libz.a (found version "1.2.11") 
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Users/overman/dev/github/_mycode/_cpp/upd/cmake-build-debug

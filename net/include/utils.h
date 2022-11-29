@@ -95,19 +95,27 @@ namespace lm {
         //}
 
 
-        class EndPointException : public std::exception {
-        public:
-            EndPointException(boost::system::error_code ec) : m_ec(ec) {}
-
-            virtual const char *what() const throw() {
-                std::stringstream ss;
-                ss << "code:" << m_ec.value() << "message:" << m_ec.message() << std::endl;
-                return ss.str().c_str();
-            }
-
-        private:
-            boost::system::error_code m_ec;
-        };
+//        class EndPointException : public std::exception {
+//        public:
+//            EndPointException(boost::system::error_code ec) : m_ec(ec) {}
+//
+//            virtual const char *what() const throw() {
+//                std::stringstream ss;
+//                ss << "code:" << m_ec.value() << "message:" << m_ec.message() << std::endl;
+//                // TODO: returning local temp
+//                const char * p = ss.str().c_str();
+//                q = new char[strlen(p)];
+//                strcpy(q,p);
+//                return q;
+//            }
+//
+//            virtual ~EndPointException(){
+//                delete q;
+//            }
+//        private:
+//            char * q;
+//            boost::system::error_code m_ec;
+//        };
 
 
         class utils {
@@ -119,7 +127,7 @@ namespace lm {
                auto ip_address = asio::ip::address::from_string(host, ec);
                 if (ec.value() != 0) {
                     std::cout << ec.value() << std::endl;
-                    throw new EndPointException(ec);
+                    throw  ec.value();
                 }
                 auto ep = asio::ip::udp::endpoint(ip_address, port);
                 return ep;

@@ -17,14 +17,14 @@ using namespace lm::spp;
 int main() {
 
     try {
-        bool isRunning = true;
         std::string host = "127.0.0.1";
         unsigned short port = 7767;
+        int COUNT = 100;
         UdpUtilsSync *udpUtil = new UdpUtilsSync();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < COUNT; i++) {
             stringstream ss;
             ss << "Sending Some Data " << i << endl;
-            udpUtil->RequestAndForget(host, port, ss.str());
+            udpUtil->SendTo(host, port, ss.str().c_str(),ss.str().length());
             cout << "Sent " << ss.str() << endl;
             std::this_thread::sleep_for(1000ms);
         }
