@@ -28,22 +28,22 @@ int main()
 
     try {
         // client
-        auto client = [isRunning](string host, unsigned short port)
+        auto startSending = [isRunning](string host, unsigned short port)
         {
             int send_count = 0;
             auto t = new thread([&](string host, unsigned short port) {
+
                 UdpUtilsSync udpUtil;
                 while (isRunning) {
                     stringstream ss;
                     ss << "Sending Some Data " << send_count << endl;
                     string data = ss.str();
                     try {
-                        udpUtil.RequestAndForget(host, port, data);
+       
+                        udpUtil.SendTo(host, port, data.c_str(), data.length());
                         cout << "client.RequestAndForget " << data << endl;
                         send_count++;
-                        //std::this_thread::sleep_for(2000ms);
-                        //auto reply = udpUtil.RequestReply(host, port, data);
-                        //cout << "client.RequestReply " << data << ":" << reply << endl;
+                        std::this_thread::sleep_for(2000ms);
                     }
                     catch (std::exception& ex) {
                         std::cerr << ex.what() << endl;
@@ -54,7 +54,7 @@ int main()
                 },host,port );
             return t;
         };
-        client(host,port)->detach();
+        startSending(host,port)->detach();
 
         // server
         auto server = [isRunning](string host, unsigned short port) {
@@ -63,9 +63,12 @@ int main()
                 UdpUtilsSync udpUtil;
                 while (isRunning) {
                     try {
-                        auto data = udpUtil.ReceiveNoReply(host, port);
-                        cout << "Server ReceiveNoReply " << data << endl;
-                        circular_buffer.push_back(data);
+                        boost::array<char, 1024> data = udpUtil.ServerReceiveNoReply(host, port, [&](boost::array<char, 1024> data) {
+                            std::string str(data.begin(), data.end());
+                            cout << "Server ReceiveNoReply " << str << endl;
+                            circular_buffer.push_back(str);
+        
+                        });
                     }
                     catch (std::exception &ex) {
                         std::cerr << ex.what() << endl;

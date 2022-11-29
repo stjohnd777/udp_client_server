@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <functional>
+#include <memory>
 #include <boost/asio.hpp>
 #include <boost/array.hpp>
 #include "net.h"
@@ -10,99 +11,82 @@
 namespace lm {
     namespace spp {
 
-        //template <class R, class R>
-        //class UdpService {
-        //public:
-        //    UdpService(std::string host, unsigned short port):m_host(host),m_port(port), m_udp_socket(m_ios) {
 
-        //    }
+        template<class Req, std::size_t N = sizeof(Req)>
+        void UdpSend(std::string host, unsigned short port, Req req ) {
+            boost::asio::io_service ios;
+            boost::asio::ip::udp::socket udp_socket(ios);
+            udp_socket.open(asio::ip::udp::v4());
+            auto udp_ep = utils::GetUdpEndpoint(host, port);
+            
+            boost::array<char, N> data;
+            char* p = lm::spp::Serialize(req);
+            int index = 0;
+            for (char c : data) {
+                data[index] = *(p + index);
+            }
+            auto bufferedData = asio::buffer(data);
 
-        //    virtual void Send(R data, std::function<void(R)> completionHandler) {
-        //        auto udp_ep = utils::GetUdpEndpoint(host, port);
-        //        auto bufferedData = asio::buffer(data);
-        //        m_udp_socket.send_to(bufferedData, udp_ep);
-        //        completionHandler(data);
-        //    }
+            udp_socket.send_to(bufferedData, udp_ep);
 
+            udp_socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
+            udp_socket.close();
+        }
 
-        //    virtual void OnConnect(std::function<void(boost::asio::ip::udp::endpoint)> handler) = 0;
-        //    
-        //    virtual void Listening() {
-        //        char response[1024];
-        //        boost::asio::ip::udp::endpoint sender_endpoint;
-        //        size_t bytes_received = m_udp_socket.receive_from(boost::asio::buffer(response), sender_endpoint);
-        //        std::string rcvData(response, bytes_received);
-        //        OnMessage();
-        //    }
-
-        //    // The 'message' event is emitted when a new datagram is available on a socket. 
-        //    // The event handler function is passed two arguments: 
-        //    // msg and rinfo.
-        //    virtual void OnMessage(R data, (boost::asio::ip::udp::endpoint epRemote, std::function<void(R)> handler) = 0;
-        //    virtual void OnError() = 0;
-
-        //protected:
-        //    boost::asio::io_service m_ios;
-        //    std::string m_host;
-        //    unsigned short m_port;
-        //    boost::asio::ip::udp::socket m_udp_socket;
-        //};
-
-        //template <class Req, class Res>
-        //class UdpUtils {
-
-        //public:
-        //    UdpUtilsSync();
-
-        //    // Server Listen and Reply tp Sender
-        //    Res OnMessage();
-
-        //    // Client Fire and Forget, DRY same as SendTo
-        //    void Send(std::string host, unsigned short port, const Req& data);
-
-        //    // Client Sends Request and Wait for Reply
-        //    Res ReplyToSender();
+        template<class Req, class Res, std::size_t N = sizeof(Req), std::size_t M= sizeof(Res)>
+        std::shared_ptr<Res*> UdpRequestReply(std::string host, unsigned short port, Req req) {
+            boost::asio::io_service ios;
+            UdpSend<Req>(host,port,req);
  
-        //protected:
-        //    // This is the object providing access to the operating system's communication services
-        //    // used by the socket object
-        //    boost::asio::io_service m_ios;
-        //    // UDP socket used for communication
-        //    boost::asio::ip::udp::socket m_udp_socket;
-        //};
+            boost::asio::ip::udp::socket udp_socket(ios);          
+            udp_socket.open(asio::ip::udp::v4());
+            boost::asio::ip::udp::endpoint sender_endpoint;
 
+            char response[M];
+            size_t bytes_received = udp_socket.receive_from(boost::asio::buffer(response), sender_endpoint);
+ 
+            Res* res = lm::spp::DeSerialize<Res>(response);
+
+            udp_socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both);
+            udp_socket.close();
+
+            return std::make_shared <Res*>(res);
+        }
+ 
+        template<class Req , std::size_t N = sizeof(Req) >
+        void UpdConsumeOne(std::string host, unsigned short port, std::function<void(std::shared_ptr<Req>)> handler) {
+            boost::asio::io_service ios;
+            using namespace  boost::asio::ip::udp;
+            socket socket(io_context, endpoint( boost::asio::ip::udp::v4(), port));
+
+            char request[N];
+            endpoint remote_endpoint;
+            std::size_t bytes_received = socket.receive_from(boost::asio::buffer(request), remote_endpoint);
+
+            auto res = lm::spp::DeSerialize<Req>(response);
+            auto res = std::make_shared <Res*>(res);
+            handler(res);
+        }
+
+
+        typedef char byte;
+ 
         class UdpUtilsSync {
-
         public:
             UdpUtilsSync();
-
-            void SendTo(std::string host, unsigned short port, const std::string& data);
-            void RequestAndForget(std::string host, unsigned short port, const std::string &data);
-
-            std::string Listen();
-
-
-            std::string RequestReply(std::string host, unsigned short port, const std::string& data);
-            
-            std::string ClientReceive(std::string host, unsigned short port);
-
-            std::string ReceiveNoReply(std::string host, unsigned short port);
-
-            std::string ReceiveAndReply(std::string host, unsigned short port);
-
+            void SendTo(std::string host, unsigned short port,const char* pdata, size_t len);
+            boost::array<char, 1024> ServerReceiveNoReply(std::string host, unsigned short port);
+            boost::array<char, 1024> BlockingRead();
+            boost::array<char, 1024> RequestReply(std::string host, unsigned short port, char* pdata, size_t len);
+            void ReceiveReply(std::string host, unsigned short port , std::function<boost::array<char, 1024>(boost::array<char,1024>)> handler);
+ /*            
+            boost::array<char, N> ClientReceive(std::string host, unsigned short port); 
+*/            
             virtual ~UdpUtilsSync();
-
         protected:
-            size_t buffer_size_req = 1024;
-            size_t buffer_size_res = 1024;
-            // This is the object providing access to the operating system's communication services
-            // used by the socket object
             boost::asio::io_service m_ios;
-            // UDP socket used for communication
             boost::asio::ip::udp::socket m_udp_socket;
         };
-
-
     }
 }
 
