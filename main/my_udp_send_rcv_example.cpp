@@ -68,7 +68,7 @@ int main() {
                         auto t = udpUtil.ServerReceiveNoReply(host, port);
                         auto len = std::get<0>(t);
                         auto pChar = std::get<1>(t);
-                        char s[len+1];
+                        char s[MAX_DATAGRAM];
                         for ( size_t idx =0; idx < len; idx++){
                             char * p = pChar.get();
                             s[idx] = *( pChar.get() + idx);

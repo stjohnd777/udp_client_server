@@ -1,8 +1,11 @@
 project(net)
+set(CMAKE_CXX_STANDARD 17)
 
 find_package(boost 1.74.0 REQUIRED)
 find_package(CURL CONFIG REQUIRED)
+ 
 
+ 
 
 add_library(${PROJECT_NAME}
         include/udp/udp_utils.h

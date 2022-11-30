@@ -9,10 +9,13 @@
 #include <sstream>
 #include <iostream>
 #include <exception>
+#include <chrono>
+
 #include <boost/circular_buffer.hpp>
 
 using namespace std;
 using namespace lm::spp;
+using namespace std::chrono;
 
 int main() {
 
@@ -22,19 +25,18 @@ int main() {
         int COUNT = 100;
         UdpUtilsSync *udpUtil = new UdpUtilsSync();
         for (int i = 0; i < COUNT; i++) {
-            stringstream ss;
-            ss << "Sending Some Data " << i << endl;
-            auto t = udpUtil->RequestReply(host, port, ss.str().c_str(), ss.str().length() );
+ 
+            Request req;
+            req.seq = i;
+            req.gpsTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+            req.cameraId = 1;
+            auto bytes = lm::spp::Serialize(req);
+            
+            auto t = udpUtil->RequestReply(host, port, bytes, sizeof(Request));
             auto len = std::get<0>(t);
             auto pChar = std::get<1>(t);
-            char s[len+1];
-            for ( size_t idx =0; idx < len; idx++){
-                char * p = pChar.get();
-                s[idx] = *( pChar.get() + idx);
-            }
-            s[len] = 0;
-            string str(s);
-            cout << "reply:" << s << endl;
+            Response* res = lm::spp::DeSerialize<Response>(pChar.get());
+
         }
         cout << "cleaning up" << endl;
         delete udpUtil;

@@ -38,3 +38,20 @@ typedef struct example {
     uint32_t _u32;
     char matrix[100][200];
 } Test;
+
+struct Request
+{
+    uint32_t seq;
+    uint64_t gpsTime;
+    uint8_t cameraId;
+};
+
+struct Response
+{
+    uint32_t seq;
+    uint64_t gpsTime;
+    uint8_t cameraId;
+    int retCode;
+    //uint8_t matrix[600][800];
+
+};

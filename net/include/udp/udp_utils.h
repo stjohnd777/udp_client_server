@@ -9,13 +9,19 @@
 #include <boost/array.hpp>
 #include "net.h"
 
+
+// The correct maximum UDP message size is 65507, 
+// as determined by the following formula : 
+// 0xffff - (sizeof(IP Header) + sizeof(UDP Header)) = 65535 - (20 + 8) = 65507
+
+#define MAX_DATAGRAM 65507
+
+typedef char byte;
+
 namespace lm {
     namespace spp {
 
-        typedef
-        std::function <
-                std::tuple<size_t,std::shared_ptr<char[]>> (std::tuple<size_t,std::shared_ptr<char[]>>)
-        > REQ_REPLY_HANDLER;
+        typedef std::function <std::tuple<size_t,std::shared_ptr<char[]>> (std::tuple<size_t,std::shared_ptr<char[]>>) > REQ_REPLY_HANDLER;
 
         template<class Req, std::size_t N = sizeof(Req)>
         void UdpSend(std::string host, unsigned short port, Req req ) {
@@ -62,7 +68,7 @@ namespace lm {
         void UpdConsumeOne(std::string host, unsigned short port, std::function<void(std::shared_ptr<Req>)> handler) {
 
             boost::asio::io_service ios;
-            boost::asio::ip::udp::socket socket(ios, boost::asio::ip::udp::endpoint( boost::asio::ip::udp::v4(), port));
+            boost::asio::ip::udp::socket socket(ios, boost::asio::ip::udp::endpoint(boost::asio::ip::udp::v4(), port));
 
             char request[N];
             boost::asio::ip::udp::endpoint remote_endpoint;
@@ -75,12 +81,10 @@ namespace lm {
             socket.close();
         }
 
-
-        typedef char byte;
- 
         class UdpUtilsSync {
         public:
             UdpUtilsSync();
+
             void SendTo(std::string host, unsigned short port,const char* pdata, size_t len);
 
             std::tuple<size_t,std::shared_ptr<char[]> >
@@ -98,6 +102,86 @@ namespace lm {
             boost::asio::io_service m_ios;
             boost::asio::ip::udp::socket m_udp_socket;
         };
+
+        template<class Req, class Reply >
+        class UdpComsumer {
+        public:
+            std::shared_ptr<Req*> Receive(std::string host, unsigned short port, Req req) {
+                auto data = udpUtil.ServerReceiveNoReply(host, port);
+                Req* req = lm::spp::DeSerialize<Req>(data);
+                return std::make_shared <Req*>(req);
+            }
+
+            void StartReceiving(std::string host, unsigned short port, std::function<void(Req*)> handler) {
+                isRunning = true;
+                while (isRunning) {
+                    auto req = Receive(host, port, handler);
+                    handler(req);
+                }
+            }
+
+            void Stop() {
+                isRunning false;
+            }
+        };
+
+        template<class Req, class Res >
+        class UdpSender {
+        public:
+            UdpSender(std::string host, unsigned short port) : m_host(host), m_port(port) {
+            }
+            void Send(Req& req) {
+                lm::spp::UdpSend<Request>(m_host, m_port, req);
+            }
+
+        protected:
+            std::string m_host;
+            unsigned short m_port;
+        };
+
+
+        template<class Req, class Res >
+        class UdpClient {
+        public:
+            UdpClient(std::string host, unsigned short port) : m_host(host), m_port(port) {
+            }
+            void Send(Req& req) {
+                lm::spp::UdpSend<Request>(m_host, m_port, req);
+            }
+
+            std::shared_ptr<Res*> RequestReply(Req req) {
+                return lm::spp::UdpRequestReply<Request, Response>(m_host, m_port, req);
+            }
+
+        protected:
+            std::string m_host;
+            unsigned short m_port;
+        };
+
+        template<class Req, class Reply >
+        class UdpServer {
+        public:
+            std::shared_ptr<Reply*> ReceiveReply(std::string host, unsigned short port, std::function<Reply* (Req*)> handler) {
+                char* data = udpUtil.RequestReply(host, port, data);
+                Req* res = lm::spp::DeSerialize<Reply>(data);
+                Reply* res = handler(res);
+                return std::make_shared <Reply*>(res);
+            }
+
+            void StartReqRes(std::string host, unsigned short port, std::function<Reply* (Req*)> handler) {
+                isRunning = true;
+                while (isRunning) {
+                    ReceiveReply(host, port, handler)
+                }
+            }
+            void Stop() {
+                isRunning false;
+            }
+        protected:
+            lm::spp::UdpUtilsSync udpUtil;
+            bool isRunning = false;
+        };
+
     }
 }
 

@@ -7,10 +7,16 @@
 
 #include <string>
 #include <iostream>
+#include <chrono>
+#include <tuple>
+#include <memory>
+#include <boost/array.hpp>
+#include <opencv2/opencv.hpp>
 
 using namespace std;
+using namespace cv;
 using namespace lm::spp;
-
+using namespace std::chrono;
 
 
 int main() {
@@ -27,24 +33,29 @@ int main() {
             // Get request Data
             auto len = std::get<0>(req);
             auto pChar = std::get<1>(req);
+            Request* request = lm::spp::DeSerialize<Request>(pChar.get());
+            cout << "receive:" << request->seq << ":" << request->gpsTime << ":" << request->cameraId << endl;
 
-            char s[len+1];
-            for ( size_t idx =0; idx < len; idx++){
-                char * p = pChar.get();
-                s[idx] = *( pChar.get() + idx);
-            }
-            s[len] = 0;
-            string str(s);
-            cout << "server received: " << str << endl;
+            Response response;
+            response.seq = request->seq;
+            response.gpsTime = duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+            response.cameraId = request->cameraId;
 
-            // Process
 
-            // Construct Reply
-            size_t bytes_out = 2;
+            string img = "C:/Users/e438262/dev/github/udp_client_server/data/702HP_Satellite-Boeing.jpg";
+            Mat image = imread(img,IMREAD_GRAYSCALE);
+            
+            int down_width = 800;
+            int down_height = 600;
+            Mat resized_down;
+            resize(image, resized_down, Size(down_width, down_height), INTER_LINEAR);
+            size_t size_down =  sizeof(resized_down);
+
+
+            auto bytes = Serialize<Response>(response);
+            size_t bytes_out = sizeof(Response);
             std::shared_ptr<char[]> sp(new char[bytes_out]);
-            *(sp.get()+0) = 'O';
-            *(sp.get()+1) = 'K';
-
+ 
             auto res = std::make_tuple(bytes_out,sp);
             return res;
         });

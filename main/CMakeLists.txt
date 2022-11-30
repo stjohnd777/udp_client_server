@@ -1,6 +1,13 @@
 project(mains)
+set(CMAKE_CXX_STANDARD 17)
 
+find_package(Eigen3 CONFIG REQUIRED)
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
 
+################################################################
+# Thread to Thread Produced Comsumer
+################################################################
 add_executable(udp_send_rcv_example my_udp_send_rcv_example.cpp)
 target_include_directories(
         udp_send_rcv_example
@@ -10,15 +17,9 @@ target_include_directories(
 target_link_libraries(udp_send_rcv_example  PRIVATE net )
  
 
-add_executable(sams_example sams_example.cpp)
-target_include_directories(
-        sams_example
-        PUBLIC
-        net
-)
-target_link_libraries(sams_example  PRIVATE net )
-
-
+################################################################
+# Process to Process Procucer Consumer
+################################################################
 add_executable(sender sender.cpp)
 target_include_directories(
         sender
@@ -35,45 +36,23 @@ target_include_directories(
         net
 )
 target_link_libraries(receiver  PRIVATE net )
+################################################################
 
 
-add_executable(book_example book_example.cpp  )
-target_include_directories(
-        book_example
-        PUBLIC
-        net
-)
-target_link_libraries(book_example  PRIVATE net )
-
-
-
-##############################################################
-add_executable(daytime_client daytime_client.cpp)
-target_include_directories(
-        daytime_client
-        PUBLIC
-        net
-)
-target_link_libraries(daytime_client  PRIVATE net )
-
-add_executable(daytime_server daytime_server.cpp)
-target_include_directories(
-        daytime_server
-        PUBLIC
-        net
-)
-target_link_libraries(daytime_server  PRIVATE net )
-
-
-
+################################################################
+# Procees:Client Request/Reply Process:Server
+################################################################
 add_executable(server server.cpp)
 target_include_directories(
         server
         PUBLIC
         net
 )
-target_link_libraries(server  PRIVATE net )
-
+target_link_libraries(server  PRIVATE 
+         net 
+        ${OpenCV_LIBS}
+        Eigen3::Eigen  
+)
 
 
 add_executable(request_reply request_reply.cpp)
@@ -81,5 +60,13 @@ target_include_directories(
         request_reply
         PUBLIC
         net
+        ${OpenCV_LIBS}
+        Eigen3::Eigen
 )
-target_link_libraries(request_reply  PRIVATE net )
+target_link_libraries(request_reply  
+        PRIVATE 
+            net         
+            ${OpenCV_LIBS}
+            Eigen3::Eigen
+)
+################################################################

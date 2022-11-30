@@ -22,7 +22,7 @@ namespace lm {
         void UdpUtilsSync::SendTo(std::string host, unsigned short port, const char* pdata, size_t len) {
             auto udp_ep = utils::GetUdpEndpoint(host, port);
 
-            char  data[len];
+            char  data[MAX_DATAGRAM];
             for (size_t index = 0; index < len; index++) {
                 char c = *( pdata + index);
                 data[index] = c;
@@ -84,7 +84,10 @@ namespace lm {
             using namespace boost::asio::ip;
 
             udp::socket socket(m_ios, boost::asio::ip::udp::endpoint( udp::v4(), port));
-            boost::array<char, 1024> recv_buf;
+            
+            //boost::array<char, 1024> recv_buf;
+
+            char recv_buf[MAX_DATAGRAM];
             udp::endpoint remote_endpoint;
 
             std::size_t bytes_received = socket.receive_from(buffer(recv_buf), remote_endpoint);
@@ -96,16 +99,17 @@ namespace lm {
             auto req = std::make_tuple(bytes_received,sp);
 
             auto res = f(req);
-            auto len = std::get<0>(res);
-            auto pChar = std::get<1>(res);
-            char s[len+1];
-            for ( size_t idx =0; idx < len; idx++){
-                char * p = pChar.get();
-                s[idx] = *( pChar.get() + idx);
+
+            auto size_bytes_response = std::get<0>(res);
+            auto  spChar = std::get<1>(res);
+            char* pChar = spChar.get();
+            char send_buf[MAX_DATAGRAM];
+            for ( size_t idx =0; idx < size_bytes_response; idx++){
+                send_buf[idx] = *(spChar.get() + idx);
             }
 
             boost::system::error_code ignored_error;
-            socket.send_to(buffer(s,len), remote_endpoint, 0, ignored_error);
+            socket.send_to(buffer(send_buf,size_bytes_response), remote_endpoint, 0, ignored_error);
         }
 
         UdpUtilsSync::~UdpUtilsSync() {
