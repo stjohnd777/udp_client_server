@@ -42,21 +42,22 @@ int main() {
             response.cameraId = request->cameraId;
 
 
-            string img = "C:/Users/e438262/dev/github/udp_client_server/data/702HP_Satellite-Boeing.jpg";
-            Mat image = imread(img,IMREAD_GRAYSCALE);
+            // string img = "C:/Users/e438262/dev/github/udp_client_server/data/702HP_Satellite-Boeing.jpg";
+            // Mat image = imread(img,IMREAD_GRAYSCALE);
             
-            int down_width = 800;
-            int down_height = 600;
-            Mat resized_down;
-            resize(image, resized_down, Size(down_width, down_height), INTER_LINEAR);
-            size_t size_down =  sizeof(resized_down);
+            // int down_width = 800;
+            // int down_height = 600;
+            // Mat resized_down;
+            // resize(image, resized_down, Size(down_width, down_height), INTER_LINEAR);
+            // size_t size_down =  sizeof(resized_down);
 
 
-            auto bytes = Serialize<Response>(response);
-            size_t bytes_out = sizeof(Response);
-            std::shared_ptr<char[]> sp(new char[bytes_out]);
+            auto bytesOut = Serialize<Response>(response);
+            size_t size_bytes_out = sizeof(Response);
+            std::shared_ptr<char[]> sp(new char[size_bytes_out]);
+            memcpy(sp.get(), bytesOut, size_bytes_out);     
  
-            auto res = std::make_tuple(bytes_out,sp);
+            auto res = std::make_tuple(size_bytes_out,sp);
             return res;
         });
     }

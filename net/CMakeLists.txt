@@ -7,7 +7,8 @@ find_package(CURL CONFIG REQUIRED)
 
  
 
-add_library(${PROJECT_NAME}
+add_library(
+        ${PROJECT_NAME}
         include/udp/udp_utils.h
         include/Props.h
         src/Props.cpp
@@ -16,14 +17,15 @@ add_library(${PROJECT_NAME}
         include/RandomString.h
         src/RandomString.cpp
 
-        include/crow_all.h
-        include/http/RestClient.h
-        src/http/RestClient.cpp
+        # include/crow_all.h
+        # include/http/RestClient.h
+        # src/http/RestClient.cpp
 
 
         src/udp/udp_utils.cpp
         include/utils.h
-        include/net.h)
+        include/net.h
+        )
 
 target_include_directories(
         ${PROJECT_NAME}

@@ -165,3 +165,58 @@ For completeness IP4 header:
 - Allocate a UDP socket.
 - Exchange messages with the servers.
 - Deallocate the socket.
+
+
+ # PGM
+- The PGM format is a lowest common denominator grayscale file format.
+- PGM image can just be thought of an array of arbitrary integers
+- Characters from a "#" to the next end-of-line are ignored 
+
+# PGMA ASCII PGM (Portable Gray Map)
+```
+        P2
+        # feep.ascii.pgm
+        24 7
+        15
+        0 0  0  0  0  0  0  0  0 0  0  0  0  0  0  0  0 0  0  0  0  0  0  0
+        0 3  3  3  3  0  0  7  7 7  7  0  0 11 11 11 11 0  0 15 15 15 15  0
+        0 3  0  0  0  0  0  7  0 0  0  0  0 11  0  0  0 0  0 15  0  0 15  0
+        0 3  3  3  0  0  0  7  7 7  0  0  0 11 11 11  0 0  0 15 15 15 15  0
+        0 3  0  0  0  0  0  7  0 0  0  0  0 11  0  0  0 0  0 15  0  0  0  0
+        0 3  0  0  0  0  0  7  7 7  7  0  0 11 11 11 11 0  0 15  0  0  0  0
+        0 0  0  0  0  0  0  0  0 0  0  0  0  0  0  0  0 0  0  0  0  0  0  0
+```
+- the typical file extension is ".pgm", but an extension of ".pnm" is also occasionally used.
+- magic number for identifying the file type
+- whitespace
+- width formatted as ASCII characters in decimal.
+- whitespace
+- height again in ASCII decimal.
+- max grey value again in ASCII decimal.
+- single white space char usually new line
+- raster rows of height in order top to botton
+  - each in ASCII decimal
+  - between 0 and the specified maximum value
+  - separated by whitespace, 
+  - starting at the top-left corner of the graymap
+  - proceeding in normal English reading order
+
+  # PGMB, a data directory which describes binary PGM (Portable Gray Map) files.
+- the typical file extension is ".pgm", but an extension of ".pnm" is also occasionally used.
+- A "magic number" for identifying the file type. A binary PGM file's magic number is the two characters "P5".
+- Whitespace (blanks, TABs, CRs, LFs).
+- A width, formatted as ASCII characters in decimal.
+- Whitespace.
+- A height, again in ASCII decimal.
+- Whitespace.
+- The maximum gray value, MAXVAL, again in ASCII decimal. MAXVAL must be between 0 and 255.
+- A single character of whitespace, typically a newline;
+- Width * height gray values, each stored as a plain byte, 
+- between 0 and the specified maximum value, 
+- separated by whitespace, 
+- starting at the top-left corner of the graymap, 
+- proceeding in normal English reading order. 
+- A value of 0 means black, and the maximum value means white.
+- Characters from a "#" to the next end-of-line are ignored (comments).
+
+ 

@@ -39,7 +39,9 @@ typedef struct example {
     char matrix[100][200];
 } Test;
 
-struct Request
+
+
+struct RequestWithMat
 {
     uint32_t seq;
     uint64_t gpsTime;
@@ -55,3 +57,4 @@ struct Response
     //uint8_t matrix[600][800];
 
 };
+

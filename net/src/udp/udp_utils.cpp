@@ -23,10 +23,11 @@ namespace lm {
             auto udp_ep = utils::GetUdpEndpoint(host, port);
 
             char  data[MAX_DATAGRAM];
-            for (size_t index = 0; index < len; index++) {
-                char c = *( pdata + index);
-                data[index] = c;
-            }
+            memcpy(data, pdata, len);
+            //for (size_t index = 0; index < len; index++) {
+            //    char c = *( pdata + index);
+            //    data[index] = c;
+            //}
 
             auto bufferedData = asio::buffer(data,len);
             m_udp_socket.send_to(bufferedData,udp_ep);
@@ -43,10 +44,11 @@ namespace lm {
 
 
             std::shared_ptr<char[]> sp(new char[bytes_received]);
-            for (size_t index = 0; index < bytes_received; index++) {
-                char c = recv_buf[index];
-                *(sp.get()+index) = c;
-            }
+            memcpy(sp.get(), recv_buf, bytes_received);
+            //for (size_t index = 0; index < bytes_received; index++) {
+            //    char c = recv_buf[index];
+            //    *(sp.get()+index) = c;
+            //}
 
             return std::make_tuple(bytes_received,sp);
         }
@@ -64,10 +66,11 @@ namespace lm {
             std::size_t bytes_received = socket.receive_from(boost::asio::buffer(recv_buf), remote_endpoint);
 
             std::shared_ptr<char[]> sp(new char[bytes_received]);
-            for (size_t index = 0; index < bytes_received; index++) {
-                char c = recv_buf[index];
-                *(sp.get()+index) = c;
-            }
+            memcpy(sp.get(),recv_buf,bytes_received);
+            //for (size_t index = 0; index < bytes_received; index++) {
+            //    char c = recv_buf[index];
+            //    *(sp.get()+index) = c;
+            //}
             return std::make_tuple(bytes_received,sp);
         }
 
@@ -76,26 +79,23 @@ namespace lm {
             return BlockingRead();
         }
 
-        void UdpUtilsSync::ReceiveReply(
-                std::string host,
-                unsigned short port,
-                REQ_REPLY_HANDLER f) {
+        void UdpUtilsSync::ReceiveReply(std::string host, unsigned short port,REQ_REPLY_HANDLER f) {
             using namespace boost::asio;
             using namespace boost::asio::ip;
 
             udp::socket socket(m_ios, boost::asio::ip::udp::endpoint( udp::v4(), port));
             
-            //boost::array<char, 1024> recv_buf;
-
             char recv_buf[MAX_DATAGRAM];
             udp::endpoint remote_endpoint;
 
             std::size_t bytes_received = socket.receive_from(buffer(recv_buf), remote_endpoint);
             std::shared_ptr<char[]> sp(new char[bytes_received]);
-            for (size_t index = 0; index < bytes_received; index++) {
-                char c = recv_buf[index];
-                *(sp.get()+index) = c;
-            }
+            // TODO : examin memcpy
+            memcpy(sp.get(), recv_buf, bytes_received);
+            //for (size_t index = 0; index < bytes_received; index++) {
+            //    char c = recv_buf[index];
+            //    *(sp.get()+index) = c;
+            //}
             auto req = std::make_tuple(bytes_received,sp);
 
             auto res = f(req);
@@ -104,9 +104,10 @@ namespace lm {
             auto  spChar = std::get<1>(res);
             char* pChar = spChar.get();
             char send_buf[MAX_DATAGRAM];
-            for ( size_t idx =0; idx < size_bytes_response; idx++){
-                send_buf[idx] = *(spChar.get() + idx);
-            }
+            memcpy(send_buf, spChar.get(), size_bytes_response);
+            //for ( size_t idx =0; idx < size_bytes_response; idx++){
+            //    send_buf[idx] = *(spChar.get() + idx);
+            //}
 
             boost::system::error_code ignored_error;
             socket.send_to(buffer(send_buf,size_bytes_response), remote_endpoint, 0, ignored_error);

@@ -1,16 +1,18 @@
+#define CATCH_CONFIG_MAIN // provides main(); this line is required in only one .cpp file
+#include "catch.hpp"
+#include <net.h>
 #include <iostream>
 #include <sstream>
-#include <string>
+#include <iostream>
 #include <thread>
 #include <chrono>
 #include <algorithm>
-
-#include <net.h>
 
 #include <boost/circular_buffer.hpp>
 
 using namespace std;
 using namespace lm::spp;
+using namespace std::chrono;
 
 void HaltMainForSec(unsigned short seconds) {
     std::cout << "Main thread pause for " << seconds <<  std::endl;
@@ -18,34 +20,30 @@ void HaltMainForSec(unsigned short seconds) {
     std::this_thread::sleep_for(1000ms);
 }
 
-int main() {
-
+TEST_CASE( "T2T-ProducerConsumer", "[1]" ) {
+    REQUIRE( true == true );
     bool isRunning = true;
     std::string host = "127.0.0.1";
     unsigned short port = 7767;
-
-    try {
 
         auto startSending = [isRunning](string host, unsigned short port) {
             auto t = new thread([&](string host, unsigned short port) {
                 UdpUtilsSync udpUtil;
                 int send_count = 0;
                 while (isRunning) {
+                    Request req;
+                    req.seq = send_count;
+                    req.gpsTime =  duration_cast<milliseconds>(system_clock::now().time_since_epoch()).count();
+                    req.cameraId = 1;
+                    auto bytes = lm::spp::Serialize(req);
                     stringstream ss;
-                    ss << "data:" << send_count ;
-                    string data = ss.str();
-                    try {
-                        size_t len =  data.length();
-                        const char* pdata = data.c_str();
-                        udpUtil.SendTo(host, port, pdata, len);
-                        cout << "sending thread:" << std::this_thread::get_id()  << "sent:" << data << " len:" << len << endl;
-                        send_count++;
-                        std::this_thread::sleep_for(1000ms);
-                    }
-                    catch (std::exception& ex) {
-                        std::cerr << ex.what() << endl;
-                        throw ex;
-                    }
+                    ss << "Sending Some Data " << bytes << endl;
+                    udpUtil.SendTo(host, port,bytes,sizeof(Request));
+                    cout << "sent:" << req.seq << ":" << req.gpsTime << ":" << req.cameraId << endl;
+
+                    std::this_thread::sleep_for(1000ms);
+                    send_count++;
+   
                 }
                 std::cout << "thread:" << std::this_thread::get_id()  << " Sender Exiting" << std::endl;
                 },host,port );
@@ -55,28 +53,19 @@ int main() {
         startSending(host,port)->detach();
         startSending(host,port)->detach();
 
-
-
-        // server
         auto startReceiving = [isRunning](string host, unsigned short port) {
             auto t = new thread([&](string host, unsigned short port) {
 
-                boost::circular_buffer<std::string> circular_buffer(3);
+                boost::circular_buffer<Request*> circular_buffer(3);
                 UdpUtilsSync udpUtil;
                 while (isRunning) {
                     try {
                         auto t = udpUtil.ServerReceiveNoReply(host, port);
-                        auto len = std::get<0>(t);
+                        auto len = get<0>(t);
                         auto pChar = std::get<1>(t);
-                        char s[MAX_DATAGRAM];
-                        for ( size_t idx =0; idx < len; idx++){
-                            char * p = pChar.get();
-                            s[idx] = *( pChar.get() + idx);
-                        }
-                        s[len] = 0;
-                        string str(s);
-                        cout << "receiving thread:" << std::this_thread::get_id() <<  " Server Received " << str << endl;
-                        circular_buffer.push_back(s);
+                        Request* req = lm::spp::DeSerialize<Request>(pChar.get());
+                        cout << "receive:" << req->seq << ":" << req->gpsTime << ":" << req->cameraId << endl;
+                        circular_buffer.push_back(req);
                     }
                     catch (std::exception &ex) {
                         std::cerr << ex.what() << endl;
@@ -85,7 +74,7 @@ int main() {
                 std::cout << "Receiving Thread exiting" << std::endl;
                 
                 int index = 0;
-                std::for_each(begin(circular_buffer), end(circular_buffer), [&](std::string m) {
+                std::for_each(begin(circular_buffer), end(circular_buffer), [&](Request* m) {
                     std::cout << "index:" << index << "data:" << m << std::endl;
                     index++;
                     }); 
@@ -94,15 +83,7 @@ int main() {
         };
         startReceiving(host,port)->detach();
 
-
         HaltMainForSec(60);
 
         isRunning = false;
-
-    }
-    catch (...) {
-        std::cout << "Unexpected error" << std::endl;
-        return -9;
-    }
-    return 0;
 }
